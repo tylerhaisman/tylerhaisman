@@ -1,4 +1,4 @@
-# Hi, I'm Tyler Haisman
+# 👋 Hi, I'm Tyler Haisman
 
 A bit about me:
 
