@@ -11,7 +11,7 @@
     gap: 50px;
     position: relative;
     z-index: 2;
-    opacity: 0;
+    opacity: 1;
 }
 
 .skills .content.fade-in{

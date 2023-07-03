@@ -7,7 +7,7 @@
 }
 
 .contact .content{
-    opacity: 0;
+    opacity: 1;
 }
 
 .contact .content.fade-in{

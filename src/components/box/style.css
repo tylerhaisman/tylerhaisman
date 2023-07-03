@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     padding: 30px;
-    opacity: 0;
+    opacity: 1;
 }
 
 .projects .container .box.fade-in{
@@ -67,7 +67,7 @@
 }
 
 .projects .container .box .left .checkitout {
-    opacity: 0;
+    opacity: 1;
     transform: translateY(10px);
     transition: 0.2s ease-in-out;
     display: flex;
