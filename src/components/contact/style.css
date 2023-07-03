@@ -1,0 +1,137 @@
+.contact{
+    background-color: #142134;
+    /* background: linear-gradient(#161d26, #142134 40%); */
+    color: #161d26;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+.contact .content{
+    opacity: 0;
+}
+
+.contact .content.fade-in{
+    opacity: 1;
+    animation: fadeIn 0.5s;
+}
+
+.contact h1{
+    color: #fff;
+}
+
+.contact .contactcontent{
+    gap: 40px;
+}
+
+.contact .contactcontent .experience{
+    padding-top: 40px;
+    /* border-top: 1px dashed #ffffff20; */
+}
+
+.contact .contactcontent .letsconnect{
+    padding-top: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-top: 1px dashed #ffffff29;
+}
+
+.contact .contactcontent .contactinfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px dashed #ffffff29; */
+    border-radius: 20px;
+    padding: 40px;
+    padding-top: 20px;
+    backdrop-filter: blur(10px);
+    /* max-width: max-content; */
+    margin: auto;
+    /* margin-top: 80px; */
+}
+
+.contact .contactcontent .contactinfo .item{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contact .contactcontent .contactinfo .item .bitmoji{
+    border-radius: 50%;
+    margin-bottom: 20px;
+    /* margin-right: -40px; */
+}
+
+.contact .contactcontent .socials{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contact .contactcontent .socials img{
+    transition: 0.2s;
+    padding: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+} 
+.contact .contactcontent .socials img:hover{
+    transform: translateY(-3px);
+}
+
+.contact .contactcontent .experience .items{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.contact .contactcontent .experience .items .item{
+    /* border-top: 1px dashed #ffffff29; */
+    color: #fff;
+    padding: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #ffffff20;
+    border: 1px solid #ffffff29;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.contact .contactcontent .experience .items .item ul{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.contact .contactcontent .experience .items .item ul li{
+    background-color: #ffffff20;
+    border: 1px solid #ffffff29;
+    border-radius: 10px;
+    padding: 10px;
+    /* backdrop-filter: blur(10px); */
+}
+
+.contact hr{
+    margin-top: 2px;
+}
+
+@media(max-width: 700px){
+    .contact .contactcontent{
+        flex-direction: column;
+    }
+    .contact .contactcontent .experience{
+        border-top: 1px dashed #ffffff20;
+    }
+    .contact .contactcontent .experience .items{
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,107 @@
+.projects .container .box {
+    height: 300px;
+    background-color: #315A70;
+    border: 1px solid #161d2616;
+    border-radius: 20px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    opacity: 0;
+}
+
+.projects .container .box.fade-in{
+    opacity: 1;
+    animation: fadeIn 0.5s;
+}
+
+.projects .container .box img {
+    height: 100%;
+    width: auto;
+    border-radius: 20px;
+    /* transform: perspective(1000px) rotateX(4deg) rotateY(-10deg) rotateZ(4deg); */
+    transform: rotate(0);
+    box-shadow: 24px 16px 64px 0 #00000061;
+    transition: 0.2s;
+}
+
+.projects .container .box img:hover {
+    transform: rotate(0);
+}
+
+@media(max-width: 700px) {
+    .projects .container .box {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        height: fit-content;
+    }
+
+    .projects .container .box img {
+        width: 200px;
+        height: auto;
+    }
+}
+
+.projects .container .box .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.projects .container .box .left .winner {
+    background: linear-gradient(to right, #e8bc4d, #bf920c);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.projects .container .box .left .winner p {
+    font-size: 14px;
+}
+
+.projects .container .box .left .checkitout {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.2s ease-in-out;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.projects .container .box:hover .left .checkitout {
+    transition: 0.5s ease-in-out;
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.projects .container .box .left .checkitout button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: #ffffff20;
+    backdrop-filter: blur(10px);
+    border: 1px solid #ffffff29;
+}
+
+.projects .container .box .left .checkitout button .arrow {
+    width: 15px;
+    height: 15px;
+    rotate: 45deg;
+}
+
+.projects .container .box .left .description {
+    margin-bottom: -55px;
+    transition: 0.2s ease-in-out;
+}
+
+.projects .container .box:hover .left .description {
+    margin-bottom: 20px;
+}

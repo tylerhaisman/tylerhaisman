@@ -1,0 +1,59 @@
+.skills {
+    color: #fff;
+    padding-top: 50px;
+    position: relative;
+    background: linear-gradient(#161d26, #142134);
+}
+
+.skills .content{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.skills .content.fade-in{
+    opacity: 1;
+    animation: fadeIn 0.5s;
+}
+.skills .content .skillscontent{
+    flex: 1;
+    text-align: center;
+    border-bottom: 1px dashed #ffffff29;
+}
+
+.skills .content .skillscontent ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+    margin-top: 30px;
+}
+
+.skills ul{
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.skills ul li{
+    padding: 10px;
+    width: max-content;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: 0.2s;
+    background-color: #ffffff20;
+    backdrop-filter: blur(10px);
+    border: 1px solid #ffffff29;
+}
+
+.skills ul li:hover{
+    scale: 1.05;
+}
