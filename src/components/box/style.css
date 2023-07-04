@@ -67,7 +67,7 @@
 }
 
 .projects .container .box .left .checkitout {
-    opacity: 1;
+    opacity: 0;
     transform: translateY(10px);
     transition: 0.2s ease-in-out;
     display: flex;
