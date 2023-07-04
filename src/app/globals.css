@@ -61,7 +61,7 @@ a{
   padding: 0;
 }
 body{
-  background-color: #161d26;
+  background-color: #142134;
   color: #fff;
 }
 .content{
@@ -71,14 +71,25 @@ body{
   padding-right: 20px;
 }
 
-@keyframes fadeIn{
-  0%{
+@keyframes fadeIn {
+  0% {
     opacity: 0;
     transform: translateY(20px);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
   }
 }
 
