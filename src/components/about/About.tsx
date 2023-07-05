@@ -13,6 +13,8 @@ const About = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: "-200px",
+    root: null,
+    threshold: 0.9
   });
 
   useEffect(() => {
