@@ -1,4 +1,21 @@
 .projects .container .box {
+    background-color: #315A70;
+    border: 1px solid #161d2616;
+    border-radius: 20px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+}
+
+.projects .container .box .boxcontent {
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+/* .projects .container .box {
     height: 300px;
     background-color: #315A70;
     border: 1px solid #161d2616;
@@ -9,8 +26,8 @@
     display: flex;
     justify-content: space-between;
     padding: 30px;
-    opacity: 0;
-}
+    opacity: 1;
+} */
 
 .projects .container .box.fade-in{
     opacity: 1;
