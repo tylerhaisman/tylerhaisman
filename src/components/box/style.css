@@ -6,6 +6,7 @@
     position: relative;
     z-index: 1;
     opacity: 0;
+    transition: 0.2s;
 }
 
 .projects .container .box .boxcontent {
@@ -41,11 +42,12 @@
     /* transform: perspective(1000px) rotateX(4deg) rotateY(-10deg) rotateZ(4deg); */
     transform: rotate(0);
     box-shadow: 24px 16px 64px 0 #00000061;
-    transition: 0.2s;
+    transition: 1s;
 }
 
-.projects .container .box img:hover {
+.projects .container .box:hover img {
     transform: rotate(0);
+        transform: perspective(1000px) rotateX(4deg) rotateY(-10deg) rotateZ(4deg);
 }
 
 @media(max-width: 700px) {

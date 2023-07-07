@@ -100,6 +100,11 @@
     border: 1px solid #ffffff29;
     border-radius: 20px;
     padding: 40px;
+    transition: 0.2s;
+}
+
+.contact .contactcontent .experience .items .item:hover{
+    box-shadow: 0 0 60px #ffffff0f;
 }
 
 .contact .contactcontent .experience .items .item ul{
