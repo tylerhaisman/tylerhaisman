@@ -79,7 +79,7 @@ export default function Home() {
               <Image
                 src={LinkedIn}
                 alt="LinkedIn"
-                className="lg:w-12 lg:h-12 w-10 h-10 hover:-translate-y-1 duration-100 cursor-pointer"
+                className="lg:w-12 lg:h-12 w-8 h-8 hover:-translate-y-1 duration-100 cursor-pointer"
                 onClick={() =>
                   openInNewTab("https://linkedin.com/in/tylerhaisman")
                 }
@@ -87,13 +87,13 @@ export default function Home() {
               <Image
                 src={Github}
                 alt="Github"
-                className="lg:w-12 lg:h-12 w-10 h-10 hover:-translate-y-1 duration-100 cursor-pointer"
+                className="lg:w-12 lg:h-12 w-8 h-8 hover:-translate-y-1 duration-100 cursor-pointer"
                 onClick={() => openInNewTab("https://github.com/tylerhaisman")}
               ></Image>
               <Image
                 src={Instagram}
                 alt="Instagram"
-                className="lg:w-12 lg:h-12 w-10 h-10 hover:-translate-y-1 duration-100 cursor-pointer"
+                className="lg:w-12 lg:h-12 w-8 h-8 hover:-translate-y-1 duration-100 cursor-pointer"
                 onClick={() =>
                   openInNewTab("https://instagram.com/tylercompsci")
                 }
