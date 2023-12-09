@@ -5,11 +5,13 @@
 @font-face {
   font-family: h1;
   src: url(../../public/Geist-Bold.otf);
+  font-weight: 1 1000;
 }
 
 @font-face {
   font-family: p;
   src: url(../../public/Geist-Regular.otf);
+  font-weight: 1 1000;
 }
 
 h1 {
