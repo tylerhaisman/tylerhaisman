@@ -203,7 +203,7 @@ export default function Home() {
           >
             About
           </motion.h1>
-          <div className="flex gap-6 mb-20">
+          <div className="flex gap-6 mb-6 lg:mb-20">
             <div
               className="flex flex-col justify-center items-center"
               onClick={() => setCurrentAboutSection("Education")}
@@ -271,7 +271,7 @@ export default function Home() {
           <AnimatePresence>
             {currentAboutSection === "Experience" && (
               <div className="overflow-hidden">
-                <div className="flex gap-6 xl:flex-row flex-col mt-6">
+                <div className="flex gap-6 xl:flex-row flex-col">
                   <motion.div
                     className="flex-[0.4] bg-white text-black p-6"
                     initial={{ opacity: 0, y: 50 }}
@@ -415,7 +415,7 @@ export default function Home() {
               </motion.div>
             )}
             {currentAboutSection === "Skills" && (
-              <ul className="flex gap-6 text-black flex-wrap mt-10 overflow-hidden">
+              <ul className="flex gap-6 text-black flex-wrap overflow-hidden">
                 {skills.map((skill, index) => (
                   <motion.li
                     key={index}
