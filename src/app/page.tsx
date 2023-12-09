@@ -8,6 +8,7 @@ import {
 } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import { toast, Toaster } from "react-hot-toast";
 
 import Thrivia from "../../public/thrivia.png";
 import Meteorite from "../../public/meteorite.png";
@@ -66,6 +67,7 @@ export default function Home() {
 
   return (
     <>
+      <Toaster></Toaster>
       <AnimatePresence>
         {scrollY > 0 && (
           <motion.div
@@ -480,9 +482,10 @@ export default function Home() {
             </div>
             <div
               className="p-6 flex-[0.4] bg-[#008CFF] relative cursor-pointer hover:-translate-y-1 duration-100"
-              onClick={() =>
-                openInNewTab("https://github.com/SkillbitAI/skillbit")
-              }
+              onClick={() => {
+                toast.remove();
+                toast.success("Coming soon!");
+              }}
             >
               <h1 className="text-[8vw] font-bold">Skillbit</h1>
               <p className="xl:text-5xl text-[5vw]">
