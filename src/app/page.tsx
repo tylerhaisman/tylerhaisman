@@ -207,7 +207,11 @@ export default function Home() {
           </motion.h1>
           <div className="flex gap-6 mb-6 lg:mb-20">
             <div
-              className="flex flex-col justify-center items-center"
+              className={
+                currentAboutSection == "Education"
+                  ? "flex flex-col justify-center items-center"
+                  : "flex flex-col justify-center items-center hover:-translate-y-1 duration-100"
+              }
               onClick={() => setCurrentAboutSection("Education")}
             >
               <h1 className="xl:text-5xl text-[5vw] text-center cursor-pointer">
@@ -228,7 +232,11 @@ export default function Home() {
               )}
             </div>
             <div
-              className="flex flex-col justify-center items-center"
+              className={
+                currentAboutSection == "Experience"
+                  ? "flex flex-col justify-center items-center"
+                  : "flex flex-col justify-center items-center hover:-translate-y-1 duration-100"
+              }
               onClick={() => setCurrentAboutSection("Experience")}
             >
               <h1 className="xl:text-5xl text-[5vw] text-center cursor-pointer">
@@ -249,7 +257,11 @@ export default function Home() {
               )}
             </div>
             <div
-              className="flex flex-col justify-center items-center"
+              className={
+                currentAboutSection == "Skills"
+                  ? "flex flex-col justify-center items-center"
+                  : "flex flex-col justify-center items-center hover:-translate-y-1 duration-100"
+              }
               onClick={() => setCurrentAboutSection("Skills")}
             >
               <h1 className="xl:text-5xl text-[5vw] text-center cursor-pointer">
@@ -693,7 +705,7 @@ export default function Home() {
               onClick={() => openInNewTab("/TylerHaismanResume.pdf")}
             >
               <p className="xl:text-5xl text-[5vw] text-white">View Resume</p>
-              <div className="flex justify-end items-center mr-6 ml-6">
+              <div className="flex justify-end items-center mr-6 ml-6 relative">
                 <div className="flex justify-center items-center -rotate-90">
                   <hr className="bg-white w-1 h-8 rotate-45 -mr-3" />
                   <hr className="bg-white w-1 h-8 -rotate-45 -ml-3" />
