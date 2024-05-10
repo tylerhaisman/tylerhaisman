@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.coverbg {
+  background-image: url(../public/images/pexels-sincegameon-12775176.jpg);
+  background-position: center;
+}
+
+.previewImage:hover img {
+  scale: 1.1;
+}
+
+@media (max-width: 500px) {
+  .text-lg {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .text-3xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .text-7xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+  .text-sm {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+  .text-xl {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+button:hover {
+  transform: translateY(-4px);
+}
