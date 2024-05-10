@@ -33,14 +33,22 @@ export default function Home() {
   const [viewMoreExperiences, setViewMoreExperiences] = useState(false);
   const text = "Hi, I'm Tyler.";
   const [typedText, setTypedText] = useState("H");
+  // const projectsRef = useRef(null);
+  // const projectsInView = useInView(projectsRef);
+  // const educationRef = useRef(null);
+  // const educationInView = useInView(educationRef);
+  // const experienceRef = useRef(null);
+  // const experienceInView = useInView(experienceRef);
+  // const contactRef = useRef(null);
+  // const contactInView = useInView(contactRef);
   const projectsRef = useRef(null);
-  const projectsInView = useInView(projectsRef);
+  const projectsInView = true;
   const educationRef = useRef(null);
-  const educationInView = useInView(educationRef);
+  const educationInView = true;
   const experienceRef = useRef(null);
-  const experienceInView = useInView(experienceRef);
+  const experienceInView = true;
   const contactRef = useRef(null);
-  const contactInView = useInView(contactRef);
+  const contactInView = true;
 
   useEffect(() => {
     let charIndex = 0;
