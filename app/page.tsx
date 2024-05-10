@@ -127,12 +127,7 @@ export default function Home() {
                   </motion.button>
                 </div>
               </div>
-              <motion.div
-                className="bg-gradient-to-tr to-blue-700 from-transparent flex-1 blur-3xl lg:relative lg:left-0 lg:right-0 absolute top-0 bottom-0 left-1/2 right-0"
-                initial={{ opacity: 0, x: 200 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-              ></motion.div>
+              <div className="bg-gradient-to-tr to-blue-700 from-transparent flex-1 blur-3xl lg:relative lg:left-0 lg:right-0 absolute top-0 bottom-0 left-1/2 right-0"></div>
             </div>
           </div>
           {/* <hr className="w-full h-1 mb-20 border-dashed border-white/20" /> */}
