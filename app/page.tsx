@@ -52,7 +52,7 @@ export default function Home() {
             <div className="flex relative">
               <div className="flex-1 relative z-20">
                 <div className="pr-8 pt-60 pb-20">
-                  <p className="text-7xl">Hi, I'm Tyler.</p>
+                  <p className="text-7xl">{"Hi, I'm Tyler."}</p>
                   <p className="text-lg mt-8">
                     I am a Computer science student and full stack software
                     engineer with a passion for software development and
