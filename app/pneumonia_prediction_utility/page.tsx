@@ -4,6 +4,7 @@ import Image from "next/image";
 import Arrow from "../../public/icons/arrow-up-340-svgrepo-com.svg";
 import markdownContent from "../../public/markdown/pneumonia_prediction_utility";
 import "../markdown.css";
+import Accuracy from "../../public/images/accuracy.png";
 
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
@@ -48,7 +49,7 @@ export default function Home() {
                     animate={{ opacity: 1, x: 0 }}
                   >
                     <p className="text-7xl">
-                      Pneumonia Prediction Utility Documentation
+                      Pneumonia Prediction Utility Overview
                     </p>
                   </motion.div>
                   <motion.p
@@ -86,6 +87,16 @@ export default function Home() {
             </div>
             <div className="markdown" id="documentation">
               <Markdown>{markdownContent}</Markdown>
+              <div className="mt-[3.5rem]">
+                <h1>Relevant images:</h1>
+                <div className="flex gap-2 flex-wrap">
+                  <Image
+                    src={Accuracy}
+                    alt="Accuracy"
+                    className="max-w-96 w-full border border-white rounded-md"
+                  ></Image>
+                </div>
+              </div>
             </div>
           </div>
         </div>
