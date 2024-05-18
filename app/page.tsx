@@ -11,6 +11,7 @@ import Instagram from "../public/icons/instagram-svgrepo-com (3).svg";
 import Lungs from "../public/icons/lungs-lung-svgrepo-com (1).svg";
 import SkillbitScreenshot from "../public/images/skillbit.png";
 import MeteoriteScreenshot from "../public/images/meteoriteScreenshot.png";
+import DICOMScreenshot from "../public/images/dicomScreenshot.png";
 import SkillbitLogo from "../public/images/logo_mini_transparent_white.png";
 import GlowbitScreenshot from "../public/images/glowbit.png";
 import GlowbitLogo from "../public/icons/puzzle-toy-svgrepo-com.svg";
@@ -149,8 +150,9 @@ export default function Home() {
               animate={projectsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
             >
-              <div className="mt-8 flex flex-col md:flex-row border-t border-white/20 border-dashed gap-16">
-                <div className="flex-1 md:pb-8 pt-8 flex flex-col justify-between gap-8">
+              {/* <div className="mt-8 flex flex-col md:flex-row border-t border-white/20 border-dashed gap-16"> */}
+              <div className="mt-8 flex flex-col md:grid grid-cols-2 border-t border-white/20 border-dashed gap-x-8 gap-y-16 pt-8">
+                <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
                       <div className="bg-cyan-700 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
@@ -249,7 +251,7 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-                <div className="flex-1 md:pt-8 pb-8 flex flex-col justify-between gap-8">
+                <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
                       <div className="bg-[#608BC6] px-12 pt-8 rounded-md overflow-hidden xl:h-56">
@@ -298,9 +300,56 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col md:flex-row md:border-t border-white/20 border-dashed gap-16">
-                <div className="flex-1 md:pb-8 pt-8 flex flex-col justify-between gap-8">
+                <div className="flex flex-col justify-between gap-8">
+                  <div className="previewImage">
+                    <div className="flex gap-4 flex-col">
+                      <div className="bg-[#555555]/30 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                        <Image
+                          src={DICOMScreenshot}
+                          alt="DICOMScreenshot"
+                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                        ></Image>
+                      </div>
+                      <h2 className="text-3xl">DICOM Image Viewer</h2>
+                    </div>
+                    <p className="text-lg">
+                      Simple, online medical image viewer
+                    </p>
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
+                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                        CORNERSTONE.JS
+                      </div>
+                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                        REACT
+                      </div>
+                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                        TYPESCRIPT
+                      </div>
+                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                        TAILWINDCSS
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 flex-wrap">
+                    <button
+                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      onClick={() =>
+                        window.open(
+                          "https://github.com/tylerhaisman/online_dicom_viewer",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <Image
+                        src={GitHub}
+                        alt="GitHub"
+                        className="w-4 h-4"
+                      ></Image>
+                      <p className="text-lg">GITHUB</p>
+                    </button>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
                       <div className="bg-[#4E46DD]/90 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
@@ -353,7 +402,7 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-                <div className="flex-1 md:pt-8 pb-8 flex flex-col justify-between gap-8">
+                <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
                       <div className="bg-[#3C4A8F] px-12 pt-8 rounded-md overflow-hidden xl:h-56">
@@ -397,9 +446,7 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-              </div>
-              <div className="flex flex-col md:flex-row md:border-t border-white/20 border-dashed gap-16">
-                <div className="flex-1 md:pb-8 pt-8 flex flex-col justify-between gap-8">
+                <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
                       <div className="bg-[#22223F] px-12 pt-8 rounded-md overflow-hidden xl:h-56">
@@ -452,7 +499,7 @@ export default function Home() {
                     </button>
                   </div>
                 </div>
-                <div className="flex-1 md:pt-8 pb-8 flex flex-col justify-between gap-8">
+                <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
                       <div className="bg-[#024FFE]/90 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
