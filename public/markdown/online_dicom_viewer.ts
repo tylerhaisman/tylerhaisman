@@ -31,7 +31,7 @@ The application leverages the cornerstone.js library to parse DICOM file header 
 DICOM images sourced from platforms like Kaggle and dicomlibrary.com.
 
 # About the Author
-This project was developed by Tyler Haisman, a computer science student aspiring to work in medicine and technology. For inquiries or collaborations, please contact Tyler via the "CONTACT" button in the header.
+This project was developed by Tyler Haisman, a computer science student interested in medicine and aspiring to work in technology. For inquiries or collaborations, please contact Tyler via the "CONTACT" button in the header.
 
 # References
 - [Stack Overflow: Could not find a declaration file for module](https://stackoverflow.com/questions/70797210/could-not-find-a-declaration-file-for-module-mymodule)

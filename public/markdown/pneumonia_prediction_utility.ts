@@ -51,7 +51,7 @@ My pneumonia prediction utility utilizes deep learning models to analyze chest X
   Incorporating more diverse and extensive datasets to capture a wider range of cases and improve generalization.
 
 # About the Author
-This project was developed by Tyler Haisman, a computer science student aspiring to work in medicine and technology. For inquiries or collaborations, please contact me by clicking on the "CONTACT" button in the header.
+This project was developed by Tyler Haisman, a computer science student interested in medicine and aspiring to work in technology. For inquiries or collaborations, please contact Tyler via the "CONTACT" button in the header.
 `;
 
 export default markdown;
