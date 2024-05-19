@@ -335,6 +335,31 @@ export default function Home() {
                       className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
+                          "https://online-dicom-viewer.vercel.app/",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <Image src={Live} alt="Live" className="w-4 h-4"></Image>
+                      <p className="text-lg">LIVE DEMO</p>
+                    </button>
+                    <button
+                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      onClick={() =>
+                        window.open("/online_dicom_viewer", "_blank")
+                      }
+                    >
+                      <Image
+                        src={Documentation}
+                        alt="Documentation"
+                        className="w-4 h-4"
+                      ></Image>
+                      <p className="text-lg">READ MORE</p>
+                    </button>
+                    <button
+                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      onClick={() =>
+                        window.open(
                           "https://github.com/tylerhaisman/online_dicom_viewer",
                           "_blank"
                         )
