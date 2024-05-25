@@ -11,7 +11,31 @@ My online DICOM image viewer is a web application designed to display and intera
   - cornerstone.js
 
 # How It Works
-The application leverages the cornerstone.js library to parse DICOM file header information and render the image(s) on the screen. The DICOM lump data is converted to JPEG format and then displayed with the <img> tag.
+The application leverages the cornerstone.js library to parse DICOM file header information and render the image(s) on the screen. The DICOM lump data is converted to JPEG format and then displayed with the <img> tag. The entire process is described below.
+
+## File upload
+- When the user uploads one or more DICOM files which are stored in an array
+
+## DICOM to JPEG conversion
+- A useEffect() hook detects a change in the array, sorts it, and converts each DICOM file into a JPEG image, storing each image's URL and associated DICOM header data in another array.
+- The cornerstone.js library assists in image parsing and conversion.
+
+## File preview selection
+- The first image in the URLs array is selected to be the preview image which is displayed to users upon successful file upload.
+
+## Displaying the images
+- Upon successful upload and the user clicking on the "View DICOM Images" button, the first image is displayed on the viewer.
+
+## Navigation
+- Users can navigate multiple images by scrolling, using the up and down arrows in the upper-right of the viewer, or dragging and holding when the cursor is in cursor mode.
+- Users can zoom into the images by pressing on the appropriate magnifying glasses toward the top of the viewer.
+- Users can pan across the images by enabling and using the joystick. To enable, click on the joystick icon toward the top of the viewer. The joystick will appear near the bottom of the viewer.
+
+## Measurements
+- Users can measure the image by enabling crosshair mode by clicking on the target button toward the top left of the viewer.
+- Once enabled, users measure by clicking on the image to place the "A" node followed by the "B" node.
+- Currently, only linear distance measurements are supported.
+- All measurements are shown in millimeters, calculated based off of the DICOM image's header data.
 
 # Features
 - View one or more DICOM images
