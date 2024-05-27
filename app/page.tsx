@@ -68,7 +68,7 @@ export default function Home() {
     <div className="bg-zinc-950 text-white scrollbar">
       <div className="max-w-7xl mx-auto md:px-12 py-12 px-8 relative">
         <div className="relative z-10">
-          <div className="">
+          <div className="min-h-screen flex flex-col gap-12">
             <motion.div
               className="flex justify-between items-center"
               initial={{ opacity: 0, y: 20 }}
@@ -89,18 +89,18 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             /> */}
-            <div className="flex relative">
+            <div className="flex relative flex-grow items-end">
               <div className="flex-1 relative z-20">
-                <div className="pr-8 pt-60 pb-20">
+                <div className="pb-24">
                   <motion.div
                     className="flex items-center justify-normal relative"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                   >
-                    <p className="text-7xl">{typedText}</p>
+                    <p className="maxHero">{typedText}</p>
                   </motion.div>
                   <motion.p
-                    className="text-lg mt-8"
+                    className="text-lg mt-8 md:w-1/2"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -131,7 +131,7 @@ export default function Home() {
                   </motion.button>
                 </div>
               </div>
-              <div className="bg-gradient-to-tr to-blue-700 from-transparent flex-1 blur-3xl lg:relative lg:left-0 lg:right-0 absolute top-0 bottom-0 left-1/2 right-0"></div>
+              <div className="bg-gradient-to-tr to-blue-700 from-transparent flex-1 blur-3xl absolute top-0 bottom-1/4 left-0 right-0"></div>
             </div>
           </div>
           {/* <hr className="w-full h-1 mb-20 border-dashed border-white/20" /> */}
