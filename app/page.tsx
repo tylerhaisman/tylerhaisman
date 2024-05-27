@@ -8,6 +8,7 @@ import Live from "../public/icons/live-photo-svgrepo-com (1).svg";
 import Documentation from "../public/icons/doc-paper-svgrepo-com.svg";
 import LinkedIn from "../public/icons/linkedin-161-svgrepo-com (4).svg";
 import Instagram from "../public/icons/instagram-svgrepo-com (3).svg";
+import NewTab from "../public/icons/external-link-svgrepo-com (1).svg";
 import Lungs from "../public/icons/lungs-lung-svgrepo-com (1).svg";
 import SkillbitScreenshot from "../public/images/skillbit.png";
 import MeteoriteScreenshot from "../public/images/meteoriteScreenshot.png";
@@ -32,7 +33,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 export default function Home() {
   const [pneumoniaGitHubMenu, setPneumoniaGitHubMenu] = useState(false);
   const [viewMoreExperiences, setViewMoreExperiences] = useState(false);
-  const text = "Hi, I'm Tyler.";
+  const text = "Hi, I'm Tyler";
   const [typedText, setTypedText] = useState("H");
   // const projectsRef = useRef(null);
   // const projectsInView = useInView(projectsRef);
@@ -64,6 +65,20 @@ export default function Home() {
     return () => clearInterval(typingInterval);
   }, []);
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="bg-zinc-950 text-white scrollbar">
       <div className="max-w-7xl mx-auto md:px-12 py-12 px-8 relative">
@@ -83,6 +98,25 @@ export default function Home() {
                 </p>
               </button>
             </motion.div>
+            <AnimatePresence>
+              {scrollPosition > 400 && (
+                <motion.div
+                  className="fixed md:left-8 md:right-8 md:top-8 left-4 right-4 top-4 max-w-7xl m-auto flex justify-between items-center p-4 rounded-full bg-zinc-950 border border-white backdrop-blur-3xl shadow-xl z-50"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                >
+                  <Link className="text-lg px-4" href={"/"}>
+                    TYLER_HAISMAN
+                  </Link>
+                  <button className="border border-gray-50 rounded-full px-4 py-2 duration-200">
+                    <p className="text-lg">
+                      <Link href={"#contact"}>CONTACT</Link>
+                    </p>
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
             {/* <motion.hr
               className="w-full mt-12 border-dashed border-white/20"
               initial={{ opacity: 0, y: 20 }}
@@ -93,11 +127,31 @@ export default function Home() {
               <div className="flex-1 relative z-20">
                 <div className="pb-24">
                   <motion.div
-                    className="flex items-center justify-normal relative"
+                    className="flex relative"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                   >
-                    <p className="maxHero">{typedText}</p>
+                    <p className="maxHero font-mono uppercase font-semibold">
+                      {typedText}
+                      {typedText == "Hi, I'm Tyler" && (
+                        <motion.span
+                          initial={{ opacity: 1 }}
+                          animate={{ opacity: [1, 0, 1] }}
+                          transition={{
+                            duration: 0.8,
+                            repeat: Infinity,
+                          }}
+                          className=""
+                        >
+                          _
+                        </motion.span>
+                      )}
+                      {typedText != "Hi, I'm Tyler" && (
+                        <motion.span initial={{ opacity: 1 }} className="">
+                          _
+                        </motion.span>
+                      )}
+                    </p>
                   </motion.div>
                   <motion.p
                     className="text-lg mt-8 md:w-1/2"
@@ -131,7 +185,7 @@ export default function Home() {
                   </motion.button>
                 </div>
               </div>
-              <div className="bg-gradient-to-tr to-blue-700 from-transparent flex-1 blur-3xl absolute top-0 bottom-1/4 left-0 right-0"></div>
+              <div className="bg-gradient-to-tr to-blue-700 from-transparent flex-1 blur-3xl absolute top-0 bottom-1/4 left-0 right-0 rounded-3xl"></div>
             </div>
           </div>
           {/* <hr className="w-full h-1 mb-20 border-dashed border-white/20" /> */}
@@ -193,7 +247,10 @@ export default function Home() {
                     <button
                       className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
-                        window.open("/pneumonia_prediction_utility", "_blank")
+                        window.open(
+                          "documents/pneumonia_prediction_utility/pneumonia_prediction_utility.pdf",
+                          "_blank"
+                        )
                       }
                     >
                       <Image
@@ -346,7 +403,10 @@ export default function Home() {
                     <button
                       className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
-                        window.open("/online_dicom_viewer", "_blank")
+                        window.open(
+                          "documents/online_dicom_viewer/online_dicom_viewer.pdf",
+                          "_blank"
+                        )
                       }
                     >
                       <Image
@@ -875,13 +935,13 @@ export default function Home() {
                   </p>
                 </div>
                 <motion.div
-                  className="flex gap-2"
+                  className="flex gap-4 mt-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={contactInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4 }}
                 >
                   <button
-                    className="p-4 border border-white rounded-full w-fit duration-200"
+                    className="border-white rounded-full w-fit duration-200"
                     onClick={() =>
                       window.open(
                         "https://www.linkedin.com/in/tylerhaisman/",
@@ -896,7 +956,7 @@ export default function Home() {
                     ></Image>
                   </button>
                   <button
-                    className="p-4 border border-white rounded-full w-fit duration-200"
+                    className="border-white rounded-full w-fit duration-200"
                     onClick={() =>
                       window.open("https://github.com/tylerhaisman", "_blank")
                     }
@@ -908,7 +968,7 @@ export default function Home() {
                     ></Image>
                   </button>
                   <button
-                    className="p-4 border border-white rounded-full w-fit duration-200"
+                    className="border-white rounded-full w-fit duration-200"
                     onClick={() =>
                       window.open(
                         "https://www.instagram.com/tylercompsci/",
@@ -923,6 +983,19 @@ export default function Home() {
                     ></Image>
                   </button>
                 </motion.div>
+                <button
+                  className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex items-center justify-center gap-2 mt-2"
+                  onClick={() =>
+                    window.open("documents/TylerHaismanResume_2.pdf", "_blank")
+                  }
+                >
+                  <Image
+                    src={Documentation}
+                    alt="Documentation"
+                    className="w-4 h-4"
+                  ></Image>
+                  <p className="text-lg">VIEW RESUME</p>
+                </button>
               </div>
             </motion.div>
           </div>

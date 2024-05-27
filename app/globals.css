@@ -1,6 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* 
+@font-face {
+  font-family: "BaddMono";
+  src: url("../public/fonts/Badd Mono/font/OTF/Badd-Mono-Regular.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-baddmono {
+  font-family: "BaddMono";
+} */
 
 html {
   scroll-behavior: smooth;
