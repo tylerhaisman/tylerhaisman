@@ -74,7 +74,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <Link className="text-xl font-semibold" href={"/"}>
+              <Link className="text-lg" href={"/"}>
                 TYLER_HAISMAN
               </Link>
               <button className="border border-gray-50 rounded-full px-4 py-2 duration-200">
@@ -83,12 +83,12 @@ export default function Home() {
                 </p>
               </button>
             </motion.div>
-            <motion.hr
+            {/* <motion.hr
               className="w-full mt-12 border-dashed border-white/20"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-            />
+            /> */}
             <div className="flex relative">
               <div className="flex-1 relative z-20">
                 <div className="pr-8 pt-60 pb-20">
@@ -137,7 +137,7 @@ export default function Home() {
           {/* <hr className="w-full h-1 mb-20 border-dashed border-white/20" /> */}
           <div className="mt-40" id="projects" ref={projectsRef}>
             <motion.h1
-              className="text-lg max-w-4xl"
+              className="text-lg max-w-4xl border-b pb-2 w-fit"
               initial={{ opacity: 0, y: 20 }}
               animate={projectsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0 }}
@@ -151,7 +151,7 @@ export default function Home() {
               transition={{ delay: 0.2 }}
             >
               {/* <div className="mt-8 flex flex-col md:flex-row border-t border-white/20 border-dashed gap-16"> */}
-              <div className="mt-8 flex flex-col md:grid grid-cols-2 border-t border-white/20 border-dashed gap-x-8 gap-y-16 pt-8">
+              <div className="mt-8 flex flex-col md:grid grid-cols-2 border-white/20 border-dashed gap-x-8 gap-y-16 pt-8">
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
@@ -588,7 +588,7 @@ export default function Home() {
           </div>
           <div className="mt-40" ref={educationRef}>
             <motion.h1
-              className="text-lg max-w-4xl"
+              className="text-lg max-w-4xl border-b pb-2 w-fit"
               initial={{ opacity: 0, y: 20 }}
               animate={educationInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0 }}
@@ -596,7 +596,7 @@ export default function Home() {
               EDUCATION
             </motion.h1>
             <motion.div
-              className="mt-8 border-t border-white/20 border-dashed py-8"
+              className="mt-8 border-white/20 border-dashed py-8"
               initial={{ opacity: 0, y: 20 }}
               animate={educationInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
@@ -657,7 +657,7 @@ export default function Home() {
           </div>
           <div className="mt-40 relative" ref={experienceRef}>
             <motion.h1
-              className="text-lg max-w-4xl"
+              className="text-lg max-w-4xl border-b pb-2 w-fit"
               initial={{ opacity: 0, y: 20 }}
               animate={experienceInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0 }}
@@ -670,7 +670,7 @@ export default function Home() {
               animate={experienceInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
             >
-              {/* <div className="flex flex-row-reverse justify-between gap-4 border rounded-md border-white/20 p-8 backdrop-blur-3xl border-dashed">
+              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
                 <Image
                   src={SWALogo}
                   alt="UF Logo"
@@ -681,7 +681,7 @@ export default function Home() {
                   <p className="text-lg">
                     Software Engineer Intern | May 2024 - August 2024
                   </p>
-                  <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
+                  {/* <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
                     <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
                       JAVASCRIPT
                     </div>
@@ -691,10 +691,10 @@ export default function Home() {
                     <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
                       AGILE METHODOLOGIES
                     </div>
-                  </div>
+                  </div> */}
                 </div>
-              </div> */}
-              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-t border-dashed border-white/20 py-8 backdrop-blur-3xl">
+              </div>
+              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
                 <Image
                   src={HarperLogo}
                   alt="UF Logo"
@@ -718,7 +718,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-t border-dashed border-white/20 py-8 backdrop-blur-3xl">
+              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
                 <Image
                   src={ThriviaLogo}
                   alt="UF Logo"
@@ -756,7 +756,7 @@ export default function Home() {
               </div>
               {viewMoreExperiences && (
                 <div className="">
-                  <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-y border-dashed border-white/20 py-8 backdrop-blur-3xl">
+                  <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
                     <Image
                       src={UFLogo}
                       alt="UF Logo"
@@ -795,7 +795,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-y border-dashed border-white/20 py-8 backdrop-blur-3xl">
+                  <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
                     <Image
                       src={SGLogo}
                       alt="UF Logo"
@@ -848,7 +848,7 @@ export default function Home() {
           </div>
           <div className="mt-40" id="contact" ref={contactRef}>
             <motion.h1
-              className="text-lg max-w-4xl relative z-10"
+              className="text-lg max-w-4xl border-b pb-2 w-fit"
               initial={{ opacity: 0, y: 20 }}
               animate={contactInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0 }}
@@ -856,7 +856,7 @@ export default function Home() {
               CONTACT
             </motion.h1>
             <motion.div
-              className="mt-8 border-t border-white/20 border-dashed py-16 relative backdrop-blur-3xl"
+              className="mt-8 border-white/20 border-dashed py-16 relative backdrop-blur-3xl"
               initial={{ opacity: 0, y: 20 }}
               animate={contactInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
