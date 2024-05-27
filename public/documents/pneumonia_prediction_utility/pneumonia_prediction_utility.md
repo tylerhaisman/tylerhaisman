@@ -72,6 +72,70 @@ Continuous training and fine-tuning of models to improve accuracy and robustness
 
 Incorporating more diverse and extensive datasets to capture a wider range of cases and improve generalization.
 
+## Run Locally
+
+### Client
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).\
+
+First, install all dependencies:
+
+```bash
+npm install
+# or
+yarn
+# or
+pnpm install
+# or
+bun install
+```
+
+Then, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Server
+
+This is a Python DJANGO project.\
+
+First, install all dependencies:\
+Python 2:
+
+```
+pip install -r requirements.txt
+```
+
+Python 3:
+
+```
+pip3 install -r requirements.txt
+```
+
+Then, start the server:
+
+```
+python manage.py runserver
+```
+
+By default, the server will start and run on [http://localhost:8000](http://localhost:8000)\
+
+To save all dependencies in requirements.txt,
+
+```
+pip freeze > requirements.txt
+
+```
+
 ## About the Author
 
 This project was developed by Tyler Haisman, a computer science student interested in medicine and aspiring to work in technology. For inquiries or collaborations, please contact Tyler via [tylerhaisman.com](https://tylerhaisman.com).
