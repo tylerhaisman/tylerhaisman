@@ -243,7 +243,9 @@ export default function Home() {
                           className="mx-auto rounded-t-md duration-200 shadow-lg border border-black-10"
                         ></Image>
                       </div>
-                      <h2 className="text-3xl">Pneumonia Prediction Utility</h2>
+                      <h2 className="text-3xl font-bold">
+                        Pneumonia Prediction Utility
+                      </h2>
                     </div>
                     <p className="text-lg">
                       Uses a custom neural network to determine whether a chest
@@ -345,7 +347,7 @@ export default function Home() {
                           className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
-                      <h2 className="text-3xl">Thrivia</h2>
+                      <h2 className="text-3xl font-bold">Thrivia</h2>
                     </div>
                     <p className="text-lg">AI-powered life coaching platform</p>
                     <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
@@ -394,7 +396,7 @@ export default function Home() {
                           className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
-                      <h2 className="text-3xl">DICOM Image Viewer</h2>
+                      <h2 className="text-3xl font-bold">DICOM Image Viewer</h2>
                     </div>
                     <p className="text-lg">
                       Simple, online medical image viewer
@@ -471,7 +473,7 @@ export default function Home() {
                           className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
-                      <h2 className="text-3xl">Skillbit</h2>
+                      <h2 className="text-3xl font-bold">Skillbit</h2>
                     </div>
                     <p className="text-lg">AI-powered technical interviews</p>
                     <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
@@ -524,7 +526,9 @@ export default function Home() {
                           className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
-                      <h2 className="text-3xl">Meteorite Messaging</h2>
+                      <h2 className="text-3xl font-bold">
+                        Meteorite Messaging
+                      </h2>
                     </div>
                     <p className="text-lg">Instant messaging application</p>
                     <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
@@ -568,7 +572,7 @@ export default function Home() {
                           className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
-                      <h2 className="text-3xl">Glowbit</h2>
+                      <h2 className="text-3xl font-bold">Glowbit</h2>
                     </div>
                     <p className="text-lg">A memoized logic game</p>
                     <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
@@ -621,7 +625,7 @@ export default function Home() {
                           className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
-                      <h2 className="text-3xl">NestQuest</h2>
+                      <h2 className="text-3xl font-bold">NestQuest</h2>
                     </div>
                     <p className="text-lg">Enhanced housing search engine</p>
                     <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
