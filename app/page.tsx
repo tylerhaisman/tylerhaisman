@@ -775,7 +775,7 @@ export default function Home() {
       >
         <div className="max-w-7xl m-auto relative">
           <motion.h1 className="maxHero font-mono uppercase font-semibold">
-            LET'S CONNECT
+            {"LET'S CONNECT"}
             <motion.span
               initial={{ opacity: 1 }}
               animate={{ opacity: [1, 0, 1] }}
