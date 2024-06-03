@@ -27,12 +27,25 @@ import HarperLogo from "../public/images/harper_logo.png";
 import RetroGator from "../public/images/retro_gator.png";
 import SGLogo from "../public/images/SG-Logo-Color-Vector-EPS_RGB-300x300.png";
 import Link from "next/link";
+import Professional from "../public/images/professional.jpeg";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+
+//Images in about me section
+import About1 from "../public/images/about/IMG_3570.jpeg";
+import About2 from "../public/images/about/IMG_5486.jpeg";
+import About3 from "../public/images/about/IMG_6511.jpeg";
+import About4 from "../public/images/about/IMG_6583.jpeg";
+import About5 from "../public/images/about/IMG_6782.jpeg";
+import About6 from "../public/images/about/IMG_6828.jpeg";
+import About7 from "../public/images/about/IMG_6869.jpeg";
+import About8 from "../public/images/about/IMG_6876.jpeg";
+import About9 from "../public/images/about/IMG_6932.jpeg";
 
 export default function Home() {
   const [pneumoniaGitHubMenu, setPneumoniaGitHubMenu] = useState(false);
   const [viewMoreExperiences, setViewMoreExperiences] = useState(false);
+  const [set, setViewportWidth] = useState(0);
   const text = "Hi, I'm Tyler";
   const [typedText, setTypedText] = useState("H");
   // const projectsRef = useRef(null);
@@ -79,59 +92,67 @@ export default function Home() {
     };
   }, []);
 
+  function renderFooter() {
+    const names = [];
+    for (let i = 0; i < 1000; i++) {
+      names.push(
+        <p key={i} className="text-sm font-mono text-white whitespace-nowrap">
+          TYLER HAISMAN |
+        </p>
+      );
+    }
+    return (
+      <div className="absolute left-0 right-0 bottom-0 p-2 bg-black flex gap-2 justify-center items-center">
+        {names}
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-zinc-950 text-white scrollbar">
-      <div className="max-w-7xl mx-auto md:px-12 py-12 px-8 relative">
-        <div className="relative z-10">
-          <div className="min-h-screen flex flex-col gap-12">
+    <div className="relative overflow-x-hidden">
+      <div className="relative">
+        <div className="bg-blue-700 text-white md:px-12 px-8">
+          <div className="max-w-7xl m-auto min-h-screen flex flex-col gap-12">
             <motion.div
-              className="flex justify-between items-center"
+              className="flex justify-between items-center mt-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <Link className="text-lg" href={"/"}>
+              {/* <Link className="text-lg" href={"/"}>
                 TYLER_HAISMAN
-              </Link>
-              <button className="border border-gray-50 rounded-full px-4 py-2 duration-200">
+              </Link> */}
+              <motion.h1
+                className="font-mono uppercase font-semibold text-lg"
+                onClick={() => (window.location.href = "/")}
+              >
+                TYLER HAISMAN
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Infinity,
+                  }}
+                  className=""
+                >
+                  _
+                </motion.span>
+              </motion.h1>
+              <button className="border border-white rounded-full px-4 py-2 duration-200">
                 <p className="text-lg">
                   <Link href={"#contact"}>CONTACT</Link>
                 </p>
               </button>
             </motion.div>
-            <AnimatePresence>
-              {scrollPosition > 400 && (
-                <motion.div
-                  className="fixed md:left-8 md:right-8 md:top-8 left-4 right-4 top-4 max-w-7xl m-auto flex justify-between items-center p-4 rounded-full bg-zinc-950 border border-white backdrop-blur-3xl shadow-xl z-50"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                >
-                  <Link className="text-lg px-4" href={"/"}>
-                    TYLER_HAISMAN
-                  </Link>
-                  <button className="border border-gray-50 rounded-full px-4 py-2 duration-200">
-                    <p className="text-lg">
-                      <Link href={"#contact"}>CONTACT</Link>
-                    </p>
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-            {/* <motion.hr
-              className="w-full mt-12 border-dashed border-white/20"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            /> */}
             <div className="flex relative flex-grow items-end">
               <div className="flex-1 relative z-20">
-                <div className="pb-24">
+                <div className="pb-12">
                   <motion.div
                     className="flex relative"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                   >
-                    <p className="maxHero font-mono uppercase font-semibold">
+                    <h1 className="maxHero font-mono uppercase font-semibold">
                       {typedText}
                       {typedText == "Hi, I'm Tyler" && (
                         <motion.span
@@ -151,7 +172,7 @@ export default function Home() {
                           _
                         </motion.span>
                       )}
-                    </p>
+                    </h1>
                   </motion.div>
                   <motion.p
                     className="text-lg mt-8 md:w-1/2"
@@ -188,15 +209,22 @@ export default function Home() {
               <div className="bg-gradient-to-tr to-blue-700 from-transparent flex-1 blur-3xl absolute top-0 bottom-1/4 left-0 right-0 rounded-3xl"></div>
             </div>
           </div>
-          {/* <hr className="w-full h-1 mb-20 border-dashed border-white/20" /> */}
-          <div className="mt-40" id="projects" ref={projectsRef}>
-            <motion.h1
-              className="text-lg max-w-4xl border-b pb-2 w-fit"
-              initial={{ opacity: 0, y: 20 }}
-              animate={projectsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0 }}
-            >
+        </div>
+        <div className="md:px-12 px-8 py-48" id="projects" ref={projectsRef}>
+          <div className="max-w-7xl m-auto">
+            <motion.h1 className="maxHero font-mono uppercase font-semibold">
               PROJECTS
+              <motion.span
+                initial={{ opacity: 1 }}
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{
+                  duration: 0.8,
+                  repeat: Infinity,
+                }}
+                className=""
+              >
+                _
+              </motion.span>
             </motion.h1>
             <motion.div
               className=""
@@ -204,16 +232,15 @@ export default function Home() {
               animate={projectsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
             >
-              {/* <div className="mt-8 flex flex-col md:flex-row border-t border-white/20 border-dashed gap-16"> */}
               <div className="mt-8 flex flex-col md:grid grid-cols-2 border-white/20 border-dashed gap-x-8 gap-y-16 pt-8">
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
-                      <div className="bg-cyan-700 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
                         <Image
                           src={Pneumonia}
                           alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                          className="mx-auto rounded-t-md duration-200 shadow-lg border border-black-10"
                         ></Image>
                       </div>
                       <h2 className="text-3xl">Pneumonia Prediction Utility</h2>
@@ -222,30 +249,30 @@ export default function Home() {
                       Uses a custom neural network to determine whether a chest
                       X-ray depicts pneumonia
                     </p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         PYTHON
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         DJANGO
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TENSORFLOW
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         REACT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TYPESCRIPT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TAILWINDCSS
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "documents/pneumonia_prediction_utility/pneumonia_prediction_utility.pdf",
@@ -261,7 +288,7 @@ export default function Home() {
                       <p className="text-lg">READ MORE</p>
                     </button>
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center relative"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center relative"
                       onClick={() =>
                         setPneumoniaGitHubMenu(!pneumoniaGitHubMenu)
                       }
@@ -311,43 +338,43 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
-                      <div className="bg-[#608BC6] px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
                         <Image
                           src={ThriviaScreenshot}
                           alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                          className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
                       <h2 className="text-3xl">Thrivia</h2>
                     </div>
                     <p className="text-lg">AI-powered life coaching platform</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         REACT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         JAVASCRIPT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         EXPRESS.JS
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         AZURE
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         POSTGRESQL
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         PRISMA
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         STRIPE
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open("https://thrivia.ai", "_blank")
                       }
@@ -360,11 +387,11 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
-                      <div className="bg-[#555555]/30 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
                         <Image
                           src={DICOMScreenshot}
                           alt="DICOMScreenshot"
-                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                          className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
                       <h2 className="text-3xl">DICOM Image Viewer</h2>
@@ -372,24 +399,24 @@ export default function Home() {
                     <p className="text-lg">
                       Simple, online medical image viewer
                     </p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         CORNERSTONE.JS
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         REACT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TYPESCRIPT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TAILWINDCSS
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "https://online-dicom-viewer.vercel.app/",
@@ -401,7 +428,7 @@ export default function Home() {
                       <p className="text-lg">LIVE DEMO</p>
                     </button>
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "documents/online_dicom_viewer/online_dicom_viewer.pdf",
@@ -417,7 +444,7 @@ export default function Home() {
                       <p className="text-lg">READ MORE</p>
                     </button>
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/online_dicom_viewer",
@@ -437,43 +464,43 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
-                      <div className="bg-[#4E46DD]/90 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
                         <Image
                           src={SkillbitScreenshot}
                           alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                          className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
                       <h2 className="text-3xl">Skillbit</h2>
                     </div>
                     <p className="text-lg">AI-powered technical interviews</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         REACT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TYPESCRIPT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TAILWINDCSS
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         DOCKER
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         AWS
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         POSTGRESQL
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         PRISMA
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open("https://github.com/SkillbitAI", "_blank")
                       }
@@ -490,31 +517,31 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
-                      <div className="bg-[#3C4A8F] px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
                         <Image
                           src={MeteoriteScreenshot}
                           alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                          className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
                       <h2 className="text-3xl">Meteorite Messaging</h2>
                     </div>
                     <p className="text-lg">Instant messaging application</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         REACT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         TYPESCRIPT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         POSTGRESQL
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/Meteorite",
@@ -534,28 +561,28 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
-                      <div className="bg-[#22223F] px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
                         <Image
                           src={GlowbitScreenshot}
                           alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                          className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
                       <h2 className="text-3xl">Glowbit</h2>
                     </div>
                     <p className="text-lg">A memoized logic game</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         REACT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         JAVASCRIPT
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "https://tylerhaisman.github.io/Glowbit/",
@@ -567,7 +594,7 @@ export default function Home() {
                       <p className="text-lg">LIVE DEMO</p>
                     </button>
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/Glowbit",
@@ -587,34 +614,34 @@ export default function Home() {
                 <div className="flex flex-col justify-between gap-8">
                   <div className="previewImage">
                     <div className="flex gap-4 flex-col">
-                      <div className="bg-[#024FFE]/90 px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
                         <Image
                           src={NestQuestScreenshot}
                           alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-2xl"
+                          className="mx-auto rounded-t-md duration-200 shadow-lg"
                         ></Image>
                       </div>
                       <h2 className="text-3xl">NestQuest</h2>
                     </div>
                     <p className="text-lg">Enhanced housing search engine</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         HTML
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         CSS
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         JAVASCRIPT
                       </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
+                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
                         JQUERY
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "https://tylerhaisman.github.io/NestQuest/",
@@ -626,7 +653,7 @@ export default function Home() {
                       <p className="text-lg">LIVE DEMO</p>
                     </button>
                     <button
-                      className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/NestQuest",
@@ -646,360 +673,219 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          <div className="mt-40" ref={educationRef}>
-            <motion.h1
-              className="text-lg max-w-4xl border-b pb-2 w-fit"
-              initial={{ opacity: 0, y: 20 }}
-              animate={educationInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0 }}
-            >
-              EDUCATION
-            </motion.h1>
-            <motion.div
-              className="mt-8 border-white/20 border-dashed py-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={educationInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="flex gap-16 md:flex-row flex-col">
-                <div className="flex-1 flex flex-col gap-4">
-                  <Image
-                    src={UFLogo}
-                    alt="UF Logo"
-                    className="w-20 h-20 rounded-full border"
-                  ></Image>
-                  <div className="">
-                    <h2 className="text-3xl">University of Florida</h2>
-                    <p className="text-lg">
-                      B.S. Computer Science | 3.9 GPA | May 2025 Expected
-                      Graduation
-                    </p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                        DATA STRUCTURES & ALROGITHMS
-                      </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                        OPERATING SYSTEMS
-                      </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                        ENGINEERING STATISTICS
-                      </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                        COMPUTER ORGANIZATION
-                      </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                        PROGRAMMING LANGUAGE CONCEPTS
-                      </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                        PHYSICS I & II
-                      </div>
-                      <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                        CALCULUS I, II, & III
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-1 relative flex justify-center items-center">
-                  <div className="flex-1 bg-gradient-to-tr from-transparent to-blue-700 blur-3xl flex justify-center items-center absolute left-0 right-0 top-0 bottom-0"></div>
-                  {/* <Image
-                    src={RetroGator}
-                    alt="Retro Gator"
-                    className="my-12 max-w-80 rotate-6 absolute z-20"
-                  ></Image>
-                  <Image
-                    src={RetroGator}
-                    alt="Retro Gator"
-                    className="my-12 max-w-96 rotate-3 opacity-60 blur-md absolute ml-20"
-                  ></Image> */}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-          <div className="mt-40 relative" ref={experienceRef}>
-            <motion.h1
-              className="text-lg max-w-4xl border-b pb-2 w-fit"
-              initial={{ opacity: 0, y: 20 }}
-              animate={experienceInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0 }}
-            >
-              EXPERIENCE
-            </motion.h1>
-            <motion.div
-              className="py-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={experienceInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
-                <Image
-                  src={SWALogo}
-                  alt="UF Logo"
-                  className="w-20 h-20 rounded-full border"
-                ></Image>
-                <div className="">
-                  <h2 className="text-3xl">Southwest Airlines</h2>
-                  <p className="text-lg">
-                    Software Engineer Intern | May 2024 - August 2024
-                  </p>
-                  {/* <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      JAVASCRIPT
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      AWS
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      AGILE METHODOLOGIES
-                    </div>
-                  </div> */}
-                </div>
-              </div>
-              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
-                <Image
-                  src={HarperLogo}
-                  alt="UF Logo"
-                  className="w-20 h-20 rounded-full border"
-                ></Image>
-                <div className="">
-                  <h2 className="text-3xl">Harper College</h2>
-                  <p className="text-lg">
-                    Information Technology Intern | June 2023 - August 2023
-                  </p>
-                  <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      REACT
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      TYPESCRIPT
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      JAVASCRIPT
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
-                <Image
-                  src={ThriviaLogo}
-                  alt="UF Logo"
-                  className="w-20 h-20 rounded-full border"
-                ></Image>
-                <div className="">
-                  <h2 className="text-3xl">Thrivia</h2>
-                  <p className="text-lg">
-                    Co-Founder and Software Engineer | May 2023 - Present
-                  </p>
-                  <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      REACT
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      JAVASCRIPT
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      EXPRESS.JS
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      AZURE
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      POSTGRESQL
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      PRISMA
-                    </div>
-                    <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                      STRIPE
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {viewMoreExperiences && (
-                <div className="">
-                  <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
-                    <Image
-                      src={UFLogo}
-                      alt="UF Logo"
-                      className="w-20 h-20 rounded-full border"
-                    ></Image>
-                    <div className="">
-                      <h2 className="text-3xl">
-                        UF Computer & Information Science & Engineering
-                      </h2>
-                      <p className="text-lg">
-                        Engineering Undergraduate Researcher | August 2023 -
-                        Present
-                      </p>
-                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          REACT
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          TYPESCRIPT
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          TAILWINDCSS
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          DOCKER
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          AWS
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          POSTGRESQL
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          PRISMA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex md:flex-row-reverse flex-col justify-between gap-4 border-dashed border-white/20 py-8 backdrop-blur-3xl">
-                    <Image
-                      src={SGLogo}
-                      alt="UF Logo"
-                      className="w-20 h-20 rounded-full border"
-                    ></Image>
-                    <div className="">
-                      <h2 className="text-3xl">SG Bike Repair</h2>
-                      <p className="text-lg">
-                        Bike Mechanic | November 2022 - Present
-                      </p>
-                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono">
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          BIKE REPAIR
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          TROUBLESHOOTING
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          TEAM COLLABORATION
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          INVENTORY MANAGEMENT
-                        </div>
-                        <div className="px-2 py-1 bg-white/10 rounded-md border border-white/10 backdrop-blur-3xl">
-                          CUSTOMER SERVICE
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-            <AnimatePresence>
-              {!viewMoreExperiences && (
-                <motion.div
-                  className="bg-gradient-to-t from-zinc-950 to-transparent absolute left-0 right-0 bottom-0 h-96"
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <button
-                    className="border border-gray-50 rounded-full px-4 py-2 duration-200 absolute bottom-0 left-0 right-0 w-fit mx-auto"
-                    onClick={() => setViewMoreExperiences(true)}
-                  >
-                    <p className="text-lg">VIEW MORE</p>
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          <div className="mt-40" id="contact" ref={contactRef}>
-            <motion.h1
-              className="text-lg max-w-4xl border-b pb-2 w-fit"
-              initial={{ opacity: 0, y: 20 }}
-              animate={contactInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0 }}
-            >
-              CONTACT
-            </motion.h1>
-            <motion.div
-              className="mt-8 border-white/20 border-dashed py-16 relative backdrop-blur-3xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={contactInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="absolute blur-3xl bg-gradient-to-tl from-transparent to-blue-700 left-0 right-1/2 top-0 bottom-0"></div>
-              <div className="flex-1 flex flex-col gap-4 justify-center items-center relative">
-                <Image
-                  src={Portrait}
-                  alt="UF Logo"
-                  className="w-36 h-36 rounded-full border"
-                ></Image>
-                <div className="text-center">
-                  <h2 className="text-3xl">Tyler Haisman</h2>
-                  <p className="text-lg">
-                    Computer Science student at University of Florida
-                  </p>
-                </div>
-                <motion.div
-                  className="flex gap-4 mt-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={contactInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.4 }}
-                >
-                  <button
-                    className="border-white rounded-full w-fit duration-200"
-                    onClick={() =>
-                      window.open(
-                        "https://www.linkedin.com/in/tylerhaisman/",
-                        "_blank"
-                      )
-                    }
-                  >
-                    <Image
-                      src={LinkedIn}
-                      alt="LinkedIn"
-                      className="w-4 h-4"
-                    ></Image>
-                  </button>
-                  <button
-                    className="border-white rounded-full w-fit duration-200"
-                    onClick={() =>
-                      window.open("https://github.com/tylerhaisman", "_blank")
-                    }
-                  >
-                    <Image
-                      src={GitHub}
-                      alt="GitHub"
-                      className="w-4 h-4"
-                    ></Image>
-                  </button>
-                  <button
-                    className="border-white rounded-full w-fit duration-200"
-                    onClick={() =>
-                      window.open(
-                        "https://www.instagram.com/tylercompsci/",
-                        "_blank"
-                      )
-                    }
-                  >
-                    <Image
-                      src={Instagram}
-                      alt="Instagram"
-                      className="w-4 h-4"
-                    ></Image>
-                  </button>
-                </motion.div>
-                <button
-                  className="border border-gray-50 rounded-full px-4 py-2 duration-200 flex items-center justify-center gap-2 mt-2"
-                  onClick={() =>
-                    window.open("documents/TylerHaismanResume_2.pdf", "_blank")
-                  }
-                >
-                  <Image
-                    src={Documentation}
-                    alt="Documentation"
-                    className="w-4 h-4"
-                  ></Image>
-                  <p className="text-lg">VIEW RESUME</p>
-                </button>
-              </div>
-            </motion.div>
-          </div>
         </div>
+      </div>
+      <div
+        className="bg-gray-100 md:px-12 px-8 py-48 border-t border-black text-black"
+        id="about"
+        ref={projectsRef}
+      >
+        <div className="max-w-7xl m-auto relative">
+          <motion.h1 className="maxHero font-mono uppercase font-semibold">
+            ABOUT ME
+            <motion.span
+              initial={{ opacity: 1 }}
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+              }}
+              className=""
+            >
+              _
+            </motion.span>
+          </motion.h1>
+          <motion.div
+            className=""
+            initial={{ opacity: 0, y: 20 }}
+            animate={projectsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="absolute right-0 -top-72 border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden rotate-6">
+              <Image src={About8} alt="Image of Tyler"></Image>
+            </div>
+            <div className="flex justify-center items-center mt-12">
+              <div className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden -rotate-6">
+                <Image src={About4} alt="Image of Tyler"></Image>
+              </div>
+              <div className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden rotate-6">
+                <Image src={About7} alt="Image of Tyler"></Image>
+              </div>
+              <div className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden -rotate-3">
+                <Image src={About9} alt="Image of Tyler"></Image>
+              </div>
+            </div>
+            <div className="mt-48 flex flex-col gap-24">
+              <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
+                <div className="flex-1 text-center relative">
+                  <h2 className="text-3xl">
+                    I am a senior at the{" "}
+                    <span className="font-bold">University of Florida.</span>
+                  </h2>
+                </div>
+                <div className="border border-black rounded-md rotate-3 flex-1 relative">
+                  <Image
+                    src={About1}
+                    alt="Image of Tyler"
+                    className="rounded-md"
+                  ></Image>
+                  <p className="absolute -left-8 -top-4 text-3xl bg-blue-700 px-2 py-1 rounded-md text-white uppercase font-mono -rotate-12 w-fit m-auto border border-black">
+                    Go Gators!
+                    <motion.span
+                      initial={{ opacity: 1 }}
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                      }}
+                      className=""
+                    >
+                      _
+                    </motion.span>
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
+                <div className="flex-1 text-center">
+                  <h2 className="text-3xl">
+                    I am a Software Engineer Intern at{" "}
+                    <span className="font-bold">Southwest Airlines.</span>
+                  </h2>
+                </div>
+                <div className="border border-black rounded-md overflow-hidden -rotate-3 flex-1">
+                  <Image src={About3} alt="Image of Tyler"></Image>
+                </div>
+              </div>
+              <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
+                <div className="flex-1 text-center">
+                  <h2 className="text-3xl">I love to travel.</h2>
+                </div>
+                <div className="border border-black rounded-md overflow-hidden rotate-6 flex-1">
+                  <Image src={About2} alt="Image of Tyler"></Image>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+      <div
+        className="bg-white md:px-12 px-8 py-48 border-t border-black text-black"
+        id="contact"
+        ref={projectsRef}
+      >
+        <div className="max-w-7xl m-auto relative">
+          <motion.h1 className="maxHero font-mono uppercase font-semibold">
+            LET'S CONNECT
+            <motion.span
+              initial={{ opacity: 1 }}
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{
+                duration: 0.8,
+                repeat: Infinity,
+              }}
+              className=""
+            >
+              _
+            </motion.span>
+          </motion.h1>
+          <motion.div
+            className=""
+            initial={{ opacity: 0, y: 20 }}
+            animate={projectsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="border border-black rounded-md mt-48 p-12 shadow-xl rotate-2">
+              <div className="flex justify-center items-center gap-24 md:flex-row flex-col">
+                <div className="border border-black rounded-full overflow-hidden">
+                  <Image
+                    src={Professional}
+                    alt="Professional image of Tyler"
+                  ></Image>
+                </div>
+                <div className="text-center flex flex-col justify-center items-center gap-6">
+                  <div className="">
+                    <h2 className="text-3xl font-bold">Tyler Haisman</h2>
+                    <p className="text-lg">
+                      Computer Science student at University of Florida
+                    </p>
+                  </div>
+                  <hr className="w-12 border-t border-black" />
+                  <div className="flex flex-col justify-center items-center gap-2">
+                    <motion.div
+                      className="flex gap-4 mt-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={contactInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <button
+                        className="border-white rounded-full w-fit duration-200"
+                        onClick={() =>
+                          window.open(
+                            "https://www.linkedin.com/in/tylerhaisman/",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={LinkedIn}
+                          alt="LinkedIn"
+                          className="w-4 h-4"
+                        ></Image>
+                      </button>
+                      <button
+                        className="border-white rounded-full w-fit duration-200"
+                        onClick={() =>
+                          window.open(
+                            "https://github.com/tylerhaisman",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={GitHub}
+                          alt="GitHub"
+                          className="w-4 h-4"
+                        ></Image>
+                      </button>
+                      <button
+                        className="border-white rounded-full w-fit duration-200"
+                        onClick={() =>
+                          window.open(
+                            "https://www.instagram.com/tylercompsci/",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={Instagram}
+                          alt="Instagram"
+                          className="w-4 h-4"
+                        ></Image>
+                      </button>
+                    </motion.div>
+                    <button
+                      className="border border-black rounded-full px-4 py-2 duration-200 flex items-center justify-center gap-2 mt-2"
+                      onClick={() =>
+                        window.open(
+                          "documents/TylerHaismanResume_2.pdf",
+                          "_blank"
+                        )
+                      }
+                    >
+                      <Image
+                        src={Documentation}
+                        alt="Documentation"
+                        className="w-4 h-4"
+                      ></Image>
+                      <p className="text-lg">VIEW RESUME</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+        {renderFooter()}
       </div>
     </div>
   );
