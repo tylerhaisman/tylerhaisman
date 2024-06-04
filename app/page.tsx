@@ -8,62 +8,34 @@ import Live from "../public/icons/live-photo-svgrepo-com (1).svg";
 import Documentation from "../public/icons/doc-paper-svgrepo-com.svg";
 import LinkedIn from "../public/icons/linkedin-161-svgrepo-com (4).svg";
 import Instagram from "../public/icons/instagram-svgrepo-com (3).svg";
-import NewTab from "../public/icons/external-link-svgrepo-com (1).svg";
-import Lungs from "../public/icons/lungs-lung-svgrepo-com (1).svg";
 import SkillbitScreenshot from "../public/images/skillbit.png";
 import MeteoriteScreenshot from "../public/images/meteoriteScreenshot.png";
 import DICOMScreenshot from "../public/images/dicomScreenshot.png";
-import SkillbitLogo from "../public/images/logo_mini_transparent_white.png";
 import GlowbitScreenshot from "../public/images/glowbit.png";
-import GlowbitLogo from "../public/icons/puzzle-toy-svgrepo-com.svg";
-import MessagingLogo from "../public/icons/message-square-lines-svgrepo-com.svg";
 import ThriviaScreenshot from "../public/images/thriviaScreenshot.png";
 import NestQuestScreenshot from "../public/images/nestquestScreenshot.png";
-import UFLogo from "../public/images/uf_logo.jpg";
-import SWALogo from "../public/images/swa_logo.jpg";
-import ThriviaLogo from "../public/images/thrivia.png";
-import Portrait from "../public/images/TSJEUE34M-U02QCLP04Q0-c7e769cd5507-512.jpeg";
-import HarperLogo from "../public/images/harper_logo.png";
-import RetroGator from "../public/images/retro_gator.png";
-import SGLogo from "../public/images/SG-Logo-Color-Vector-EPS_RGB-300x300.png";
 import Link from "next/link";
 import Professional from "../public/images/professional.jpeg";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 
-//Images in about me section
+// Images in about me section
 import About1 from "../public/images/about/IMG_3570.jpeg";
 import About2 from "../public/images/about/IMG_5486.jpeg";
 import About3 from "../public/images/about/IMG_6511.jpeg";
 import About4 from "../public/images/about/IMG_6583.jpeg";
-import About5 from "../public/images/about/IMG_6782.jpeg";
-import About6 from "../public/images/about/IMG_6828.jpeg";
 import About7 from "../public/images/about/IMG_6869.jpeg";
 import About8 from "../public/images/about/IMG_6876.jpeg";
 import About9 from "../public/images/about/IMG_6932.jpeg";
 
 export default function Home() {
   const [pneumoniaGitHubMenu, setPneumoniaGitHubMenu] = useState(false);
-  const [viewMoreExperiences, setViewMoreExperiences] = useState(false);
-  const [set, setViewportWidth] = useState(0);
   const text = "Hi, I'm Tyler";
   const [typedText, setTypedText] = useState("H");
-  // const projectsRef = useRef(null);
-  // const projectsInView = useInView(projectsRef);
-  // const educationRef = useRef(null);
-  // const educationInView = useInView(educationRef);
-  // const experienceRef = useRef(null);
-  // const experienceInView = useInView(experienceRef);
-  // const contactRef = useRef(null);
-  // const contactInView = useInView(contactRef);
-  const projectsRef = useRef(null);
-  const projectsInView = true;
-  const educationRef = useRef(null);
-  const educationInView = true;
-  const experienceRef = useRef(null);
-  const experienceInView = true;
-  const contactRef = useRef(null);
-  const contactInView = true;
+
+  // Example for ref implementation
+  // const exampleRef = useRef(null);
+  // const exampleRefInView = useInView(exampleRef);
 
   useEffect(() => {
     let charIndex = 0;
@@ -76,20 +48,6 @@ export default function Home() {
     }, 100);
 
     return () => clearInterval(typingInterval);
-  }, []);
-
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = () => {
-    const position = window.scrollY;
-    setScrollPosition(position);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   function renderFooter() {
@@ -210,7 +168,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="md:px-12 px-8 py-48" id="projects" ref={projectsRef}>
+        <div className="md:px-12 px-8 py-48" id="projects">
           <div className="max-w-7xl m-auto">
             <motion.h1 className="maxHero font-mono uppercase font-semibold">
               PROJECTS
@@ -229,7 +187,7 @@ export default function Home() {
             <motion.div
               className=""
               initial={{ opacity: 0, y: 20 }}
-              animate={projectsInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
               <div className="mt-8 flex flex-col md:grid grid-cols-2 border-white/20 border-dashed gap-x-8 gap-y-16 pt-8">
@@ -682,7 +640,6 @@ export default function Home() {
       <div
         className="bg-gray-100 md:px-12 px-8 py-48 border-t border-black text-black"
         id="about"
-        ref={projectsRef}
       >
         <div className="max-w-7xl m-auto relative">
           <motion.h1 className="maxHero font-mono uppercase font-semibold">
@@ -702,7 +659,7 @@ export default function Home() {
           <motion.div
             className=""
             initial={{ opacity: 0, y: 20 }}
-            animate={projectsInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
             <div className="absolute right-0 -top-72 border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden rotate-6">
@@ -775,7 +732,6 @@ export default function Home() {
       <div
         className="bg-white md:px-12 px-8 py-48 border-t border-black text-black"
         id="contact"
-        ref={projectsRef}
       >
         <div className="max-w-7xl m-auto relative">
           <motion.h1 className="maxHero font-mono uppercase font-semibold">
@@ -795,7 +751,7 @@ export default function Home() {
           <motion.div
             className=""
             initial={{ opacity: 0, y: 20 }}
-            animate={projectsInView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
             <div className="border border-black rounded-md mt-48 p-12 shadow-xl rotate-2">
@@ -818,7 +774,7 @@ export default function Home() {
                     <motion.div
                       className="flex gap-4 mt-4"
                       initial={{ opacity: 0, y: 20 }}
-                      animate={contactInView ? { opacity: 1, y: 0 } : {}}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
                     >
                       <button
