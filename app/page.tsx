@@ -17,7 +17,13 @@ import NestQuestScreenshot from "../public/images/nestquestScreenshot.png";
 import Link from "next/link";
 import Professional from "../public/images/professional.jpeg";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useInView,
+  useAnimate,
+  stagger,
+} from "framer-motion";
 
 // Images in about me section
 import About1 from "../public/images/about/IMG_3570.jpeg";
@@ -30,25 +36,114 @@ import About9 from "../public/images/about/IMG_6932.jpeg";
 
 export default function Home() {
   const [pneumoniaGitHubMenu, setPneumoniaGitHubMenu] = useState(false);
-  const text = "Hi, I'm Tyler";
-  const [typedText, setTypedText] = useState("H");
+  const [showProjects, setShowProjects] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [showConnect, setShowConnect] = useState(false);
 
-  // Example for ref implementation
-  // const exampleRef = useRef(null);
-  // const exampleRefInView = useInView(exampleRef);
+  const coverText = "Hi, I'm Tyler";
+  const [typedCoverText, setTypedCoverText] = useState("H");
+
+  const headerText = "TYLER HAISMAN";
+  const [typedHeaderText, setTypedHeaderText] = useState("T");
+
+  const projectsText = "PROJECTS";
+  const [typedProjectsText, setTypedProjectsText] = useState("P");
+
+  const aboutText = "ABOUT ME";
+  const [typedAboutText, setTypedAboutText] = useState("A");
+
+  const connectText = "LET'S CONNECT";
+  const [typedConnectText, setTypedConnectText] = useState("L");
+
+  const projectsRef = useRef(null);
+  const projectsRefInView = useInView(projectsRef);
+
+  const aboutRef = useRef(null);
+  const aboutRefInView = useInView(aboutRef);
+
+  const connectRef = useRef(null);
+  const connectRefInView = useInView(connectRef);
 
   useEffect(() => {
     let charIndex = 0;
     const typingInterval = setInterval(() => {
       charIndex++;
-      setTypedText((prevText) => prevText + text.charAt(charIndex));
-      if (charIndex === text.length) {
+      setTypedCoverText((prevText) => prevText + coverText.charAt(charIndex));
+      if (charIndex === coverText.length) {
         clearInterval(typingInterval);
       }
     }, 100);
 
     return () => clearInterval(typingInterval);
   }, []);
+
+  useEffect(() => {
+    let charIndex = 0;
+    const typingInterval = setInterval(() => {
+      charIndex++;
+      setTypedHeaderText((prevText) => prevText + headerText.charAt(charIndex));
+      if (charIndex === headerText.length) {
+        clearInterval(typingInterval);
+      }
+    }, 50);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
+  useEffect(() => {
+    if (projectsRefInView && !showProjects) {
+      setShowProjects(true);
+      let charIndex = 0;
+      const typingInterval = setInterval(() => {
+        charIndex++;
+        setTypedProjectsText(
+          (prevText) => prevText + projectsText.charAt(charIndex)
+        );
+        if (charIndex === projectsText.length) {
+          clearInterval(typingInterval);
+        }
+      }, 100);
+      return () => clearInterval(typingInterval);
+    } else if (projectsRefInView && showProjects) {
+      setTypedProjectsText("PROJECTS");
+    } else {
+      setTypedProjectsText("P");
+    }
+    if (connectRefInView && !showConnect) {
+      setShowConnect(true);
+      let charIndex = 0;
+      const typingInterval = setInterval(() => {
+        charIndex++;
+        setTypedConnectText(
+          (prevText) => prevText + connectText.charAt(charIndex)
+        );
+        if (charIndex === connectText.length) {
+          clearInterval(typingInterval);
+        }
+      }, 100);
+      return () => clearInterval(typingInterval);
+    } else if (connectRefInView && showConnect) {
+      setTypedConnectText("LET'S CONNECT");
+    } else {
+      setTypedConnectText("L");
+    }
+    if (aboutRefInView && !showAbout) {
+      setShowAbout(true);
+      let charIndex = 0;
+      const typingInterval = setInterval(() => {
+        charIndex++;
+        setTypedAboutText((prevText) => prevText + aboutText.charAt(charIndex));
+        if (charIndex === aboutText.length) {
+          clearInterval(typingInterval);
+        }
+      }, 100);
+      return () => clearInterval(typingInterval);
+    } else if (aboutRefInView && showAbout) {
+      setTypedAboutText("ABOUT ME");
+    } else {
+      setTypedAboutText("A");
+    }
+  }, [projectsRefInView, connectRefInView, aboutRefInView]);
 
   function renderFooter() {
     const names = [];
@@ -66,6 +161,19 @@ export default function Home() {
     );
   }
 
+  const parentVariant = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const childVariant = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="relative overflow-x-hidden">
       <div className="relative">
@@ -76,29 +184,39 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              {/* <Link className="text-lg" href={"/"}>
-                TYLER_HAISMAN
-              </Link> */}
-              <motion.h1
-                className="font-mono uppercase font-semibold text-lg"
-                onClick={() => (window.location.href = "/")}
-              >
-                TYLER HAISMAN
-                <motion.span
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{
-                    duration: 0.8,
-                    repeat: Infinity,
-                  }}
-                  className=""
-                >
-                  _
-                </motion.span>
+              <motion.h1 className="font-mono uppercase font-semibold text-lg">
+                {typedHeaderText}
+                {typedHeaderText == "TYLER HAISMAN" && (
+                  <motion.span
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{
+                      duration: 0.8,
+                      repeat: Infinity,
+                    }}
+                    className=""
+                  >
+                    _
+                  </motion.span>
+                )}
+                {typedHeaderText != "TYLER HAISMAN" && (
+                  <motion.span initial={{ opacity: 1 }} className="">
+                    _
+                  </motion.span>
+                )}
               </motion.h1>
               <button className="border border-white rounded-full px-4 py-2 duration-200">
                 <p className="text-lg">
-                  <Link href={"#contact"}>CONTACT</Link>
+                  <Link
+                    href={"#contact"}
+                    onClick={() => {
+                      setShowAbout(true);
+                      setShowProjects(true);
+                      setShowConnect(true);
+                    }}
+                  >
+                    CONTACT
+                  </Link>
                 </p>
               </button>
             </motion.div>
@@ -111,8 +229,8 @@ export default function Home() {
                     animate={{ opacity: 1, x: 0 }}
                   >
                     <h1 className="maxHero font-mono uppercase font-semibold">
-                      {typedText}
-                      {typedText == "Hi, I'm Tyler" && (
+                      {typedCoverText}
+                      {typedCoverText == "Hi, I'm Tyler" && (
                         <motion.span
                           initial={{ opacity: 1 }}
                           animate={{ opacity: [1, 0, 1] }}
@@ -125,7 +243,7 @@ export default function Home() {
                           _
                         </motion.span>
                       )}
-                      {typedText != "Hi, I'm Tyler" && (
+                      {typedCoverText != "Hi, I'm Tyler" && (
                         <motion.span initial={{ opacity: 1 }} className="">
                           _
                         </motion.span>
@@ -170,8 +288,541 @@ export default function Home() {
         </div>
         <div className="md:px-12 px-8 py-48" id="projects">
           <div className="max-w-7xl m-auto">
-            <motion.h1 className="maxHero font-mono uppercase font-semibold">
-              PROJECTS
+            <motion.h1
+              className="maxHero font-mono uppercase font-semibold"
+              ref={projectsRef}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              {typedProjectsText}
+              {typedProjectsText == "PROJECTS" && (
+                <motion.span
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Infinity,
+                  }}
+                  className=""
+                >
+                  _
+                </motion.span>
+              )}
+              {typedProjectsText != "PROJECTS" && (
+                <motion.span initial={{ opacity: 1 }} className="">
+                  _
+                </motion.span>
+              )}
+            </motion.h1>
+            <div className="">
+              {(showProjects || showAbout || showConnect) && (
+                <motion.div
+                  className="mt-8 flex flex-col md:grid grid-cols-2 border-white/20 border-dashed gap-x-8 gap-y-16 pt-8"
+                  initial="initial"
+                  animate="animate"
+                  variants={parentVariant}
+                >
+                  <motion.div
+                    className="flex flex-col justify-between gap-8"
+                    variants={childVariant}
+                  >
+                    <div className="previewImage">
+                      <div className="flex gap-4 flex-col">
+                        <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                          <Image
+                            src={Pneumonia}
+                            alt="Lungs"
+                            className="mx-auto rounded-t-md duration-200 shadow-lg border border-black-10"
+                          ></Image>
+                        </div>
+                        <h2 className="text-3xl font-bold">
+                          Pneumonia Prediction Utility
+                        </h2>
+                      </div>
+                      <p className="text-lg">
+                        Uses a custom neural network to determine whether a
+                        chest X-ray depicts pneumonia
+                      </p>
+                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          PYTHON
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          DJANGO
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TENSORFLOW
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          REACT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TYPESCRIPT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TAILWINDCSS
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "documents/pneumonia_prediction_utility/pneumonia_prediction_utility.pdf",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={Documentation}
+                          alt="Documentation"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">READ MORE</p>
+                      </button>
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center relative"
+                        onClick={() =>
+                          setPneumoniaGitHubMenu(!pneumoniaGitHubMenu)
+                        }
+                      >
+                        <Image
+                          src={GitHub}
+                          alt="GitHub"
+                          className="w-4 h-4"
+                        ></Image>
+                        <AnimatePresence>
+                          {pneumoniaGitHubMenu && (
+                            <motion.div
+                              className="absolute bottom-full mb-2 border border-white/10 rounded-md text-left w-max bg-white/10 backdrop-blur-3xl"
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 20 }}
+                            >
+                              <p
+                                className="p-4 hover:bg-white/10 duration-200"
+                                onClick={() =>
+                                  window.open(
+                                    "https://github.com/tylerhaisman/pneumonia_prediction_frontend",
+                                    "_blank"
+                                  )
+                                }
+                              >
+                                Front-end
+                              </p>
+                              <p
+                                className="p-4 hover:bg-white/10 duration-200"
+                                onClick={() =>
+                                  window.open(
+                                    "https://github.com/tylerhaisman/pneumonia_prediction_backend",
+                                    "_blank"
+                                  )
+                                }
+                              >
+                                Back-end
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                        <p className="text-lg">GITHUB</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    className="flex flex-col justify-between gap-8"
+                    variants={childVariant}
+                  >
+                    <div className="previewImage">
+                      <div className="flex gap-4 flex-col">
+                        <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                          <Image
+                            src={ThriviaScreenshot}
+                            alt="Lungs"
+                            className="mx-auto rounded-t-md duration-200 shadow-lg"
+                          ></Image>
+                        </div>
+                        <h2 className="text-3xl font-bold">Thrivia</h2>
+                      </div>
+                      <p className="text-lg">
+                        AI-powered life coaching platform
+                      </p>
+                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          REACT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          JAVASCRIPT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          EXPRESS.JS
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          AZURE
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          POSTGRESQL
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          PRISMA
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          STRIPE
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open("https://thrivia.ai", "_blank")
+                        }
+                      >
+                        <Image
+                          src={Live}
+                          alt="Live"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">LIVE DEMO</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    className="flex flex-col justify-between gap-8"
+                    variants={childVariant}
+                  >
+                    <div className="previewImage">
+                      <div className="flex gap-4 flex-col">
+                        <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                          <Image
+                            src={DICOMScreenshot}
+                            alt="DICOMScreenshot"
+                            className="mx-auto rounded-t-md duration-200 shadow-lg"
+                          ></Image>
+                        </div>
+                        <h2 className="text-3xl font-bold">
+                          DICOM Image Viewer
+                        </h2>
+                      </div>
+                      <p className="text-lg">
+                        Simple, online medical image viewer
+                      </p>
+                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          CORNERSTONE.JS
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          REACT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TYPESCRIPT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TAILWINDCSS
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "https://online-dicom-viewer.vercel.app/",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={Live}
+                          alt="Live"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">LIVE DEMO</p>
+                      </button>
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "documents/online_dicom_viewer/online_dicom_viewer.pdf",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={Documentation}
+                          alt="Documentation"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">READ MORE</p>
+                      </button>
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "https://github.com/tylerhaisman/online_dicom_viewer",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={GitHub}
+                          alt="GitHub"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">GITHUB</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    className="flex flex-col justify-between gap-8"
+                    variants={childVariant}
+                  >
+                    <div className="previewImage">
+                      <div className="flex gap-4 flex-col">
+                        <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                          <Image
+                            src={SkillbitScreenshot}
+                            alt="Lungs"
+                            className="mx-auto rounded-t-md duration-200 shadow-lg"
+                          ></Image>
+                        </div>
+                        <h2 className="text-3xl font-bold">Skillbit</h2>
+                      </div>
+                      <p className="text-lg">AI-powered technical interviews</p>
+                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          REACT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TYPESCRIPT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TAILWINDCSS
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          DOCKER
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          AWS
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          POSTGRESQL
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          PRISMA
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open("https://github.com/SkillbitAI", "_blank")
+                        }
+                      >
+                        <Image
+                          src={GitHub}
+                          alt="GitHub"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">GITHUB</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    className="flex flex-col justify-between gap-8"
+                    variants={childVariant}
+                  >
+                    <div className="previewImage">
+                      <div className="flex gap-4 flex-col">
+                        <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                          <Image
+                            src={MeteoriteScreenshot}
+                            alt="Lungs"
+                            className="mx-auto rounded-t-md duration-200 shadow-lg"
+                          ></Image>
+                        </div>
+                        <h2 className="text-3xl font-bold">
+                          Meteorite Messaging
+                        </h2>
+                      </div>
+                      <p className="text-lg">Instant messaging application</p>
+                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          REACT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          TYPESCRIPT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          POSTGRESQL
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "https://github.com/tylerhaisman/Meteorite",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={GitHub}
+                          alt="GitHub"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">GITHUB</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    className="flex flex-col justify-between gap-8"
+                    variants={childVariant}
+                  >
+                    <div className="previewImage">
+                      <div className="flex gap-4 flex-col">
+                        <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                          <Image
+                            src={GlowbitScreenshot}
+                            alt="Lungs"
+                            className="mx-auto rounded-t-md duration-200 shadow-lg"
+                          ></Image>
+                        </div>
+                        <h2 className="text-3xl font-bold">Glowbit</h2>
+                      </div>
+                      <p className="text-lg">A memoized logic game</p>
+                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          REACT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          JAVASCRIPT
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "https://tylerhaisman.github.io/Glowbit/",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={Live}
+                          alt="Live"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">LIVE DEMO</p>
+                      </button>
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "https://github.com/tylerhaisman/Glowbit",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={GitHub}
+                          alt="GitHub"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">GITHUB</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                  <motion.div
+                    className="flex flex-col justify-between gap-8"
+                    variants={childVariant}
+                  >
+                    <div className="previewImage">
+                      <div className="flex gap-4 flex-col">
+                        <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
+                          <Image
+                            src={NestQuestScreenshot}
+                            alt="Lungs"
+                            className="mx-auto rounded-t-md duration-200 shadow-lg"
+                          ></Image>
+                        </div>
+                        <h2 className="text-3xl font-bold">NestQuest</h2>
+                      </div>
+                      <p className="text-lg">Enhanced housing search engine</p>
+                      <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          HTML
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          CSS
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          JAVASCRIPT
+                        </div>
+                        <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
+                          JQUERY
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap">
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "https://tylerhaisman.github.io/NestQuest/",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={Live}
+                          alt="Live"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">LIVE DEMO</p>
+                      </button>
+                      <button
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
+                        onClick={() =>
+                          window.open(
+                            "https://github.com/tylerhaisman/NestQuest",
+                            "_blank"
+                          )
+                        }
+                      >
+                        <Image
+                          src={GitHub}
+                          alt="GitHub"
+                          className="w-4 h-4"
+                        ></Image>
+                        <p className="text-lg">GITHUB</p>
+                      </button>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="bg-gray-100 md:px-12 px-8 py-48 border-t border-black text-black"
+        id="about"
+      >
+        <div className="max-w-7xl m-auto relative">
+          <motion.h1
+            className="maxHero font-mono uppercase font-semibold"
+            ref={aboutRef}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            {typedAboutText}
+            {typedAboutText == "ABOUT ME" && (
               <motion.span
                 initial={{ opacity: 1 }}
                 animate={{ opacity: [1, 0, 1] }}
@@ -183,478 +834,12 @@ export default function Home() {
               >
                 _
               </motion.span>
-            </motion.h1>
-            <motion.div
-              className=""
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="mt-8 flex flex-col md:grid grid-cols-2 border-white/20 border-dashed gap-x-8 gap-y-16 pt-8">
-                <div className="flex flex-col justify-between gap-8">
-                  <div className="previewImage">
-                    <div className="flex gap-4 flex-col">
-                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
-                        <Image
-                          src={Pneumonia}
-                          alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-lg border border-black-10"
-                        ></Image>
-                      </div>
-                      <h2 className="text-3xl font-bold">
-                        Pneumonia Prediction Utility
-                      </h2>
-                    </div>
-                    <p className="text-lg">
-                      Uses a custom neural network to determine whether a chest
-                      X-ray depicts pneumonia
-                    </p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        PYTHON
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        DJANGO
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TENSORFLOW
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        REACT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TYPESCRIPT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TAILWINDCSS
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "documents/pneumonia_prediction_utility/pneumonia_prediction_utility.pdf",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image
-                        src={Documentation}
-                        alt="Documentation"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">READ MORE</p>
-                    </button>
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center relative"
-                      onClick={() =>
-                        setPneumoniaGitHubMenu(!pneumoniaGitHubMenu)
-                      }
-                    >
-                      <Image
-                        src={GitHub}
-                        alt="GitHub"
-                        className="w-4 h-4"
-                      ></Image>
-                      <AnimatePresence>
-                        {pneumoniaGitHubMenu && (
-                          <motion.div
-                            className="absolute bottom-full mb-2 border border-white/10 rounded-md text-left w-max bg-white/10 backdrop-blur-3xl"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 20 }}
-                          >
-                            <p
-                              className="p-4 hover:bg-white/10 duration-200"
-                              onClick={() =>
-                                window.open(
-                                  "https://github.com/tylerhaisman/pneumonia_prediction_frontend",
-                                  "_blank"
-                                )
-                              }
-                            >
-                              Front-end
-                            </p>
-                            <p
-                              className="p-4 hover:bg-white/10 duration-200"
-                              onClick={() =>
-                                window.open(
-                                  "https://github.com/tylerhaisman/pneumonia_prediction_backend",
-                                  "_blank"
-                                )
-                              }
-                            >
-                              Back-end
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                      <p className="text-lg">GITHUB</p>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between gap-8">
-                  <div className="previewImage">
-                    <div className="flex gap-4 flex-col">
-                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
-                        <Image
-                          src={ThriviaScreenshot}
-                          alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-lg"
-                        ></Image>
-                      </div>
-                      <h2 className="text-3xl font-bold">Thrivia</h2>
-                    </div>
-                    <p className="text-lg">AI-powered life coaching platform</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        REACT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        JAVASCRIPT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        EXPRESS.JS
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        AZURE
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        POSTGRESQL
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        PRISMA
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        STRIPE
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open("https://thrivia.ai", "_blank")
-                      }
-                    >
-                      <Image src={Live} alt="Live" className="w-4 h-4"></Image>
-                      <p className="text-lg">LIVE DEMO</p>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between gap-8">
-                  <div className="previewImage">
-                    <div className="flex gap-4 flex-col">
-                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
-                        <Image
-                          src={DICOMScreenshot}
-                          alt="DICOMScreenshot"
-                          className="mx-auto rounded-t-md duration-200 shadow-lg"
-                        ></Image>
-                      </div>
-                      <h2 className="text-3xl font-bold">DICOM Image Viewer</h2>
-                    </div>
-                    <p className="text-lg">
-                      Simple, online medical image viewer
-                    </p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        CORNERSTONE.JS
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        REACT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TYPESCRIPT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TAILWINDCSS
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "https://online-dicom-viewer.vercel.app/",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image src={Live} alt="Live" className="w-4 h-4"></Image>
-                      <p className="text-lg">LIVE DEMO</p>
-                    </button>
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "documents/online_dicom_viewer/online_dicom_viewer.pdf",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image
-                        src={Documentation}
-                        alt="Documentation"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">READ MORE</p>
-                    </button>
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "https://github.com/tylerhaisman/online_dicom_viewer",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image
-                        src={GitHub}
-                        alt="GitHub"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">GITHUB</p>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between gap-8">
-                  <div className="previewImage">
-                    <div className="flex gap-4 flex-col">
-                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
-                        <Image
-                          src={SkillbitScreenshot}
-                          alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-lg"
-                        ></Image>
-                      </div>
-                      <h2 className="text-3xl font-bold">Skillbit</h2>
-                    </div>
-                    <p className="text-lg">AI-powered technical interviews</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        REACT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TYPESCRIPT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TAILWINDCSS
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        DOCKER
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        AWS
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        POSTGRESQL
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        PRISMA
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open("https://github.com/SkillbitAI", "_blank")
-                      }
-                    >
-                      <Image
-                        src={GitHub}
-                        alt="GitHub"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">GITHUB</p>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between gap-8">
-                  <div className="previewImage">
-                    <div className="flex gap-4 flex-col">
-                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
-                        <Image
-                          src={MeteoriteScreenshot}
-                          alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-lg"
-                        ></Image>
-                      </div>
-                      <h2 className="text-3xl font-bold">
-                        Meteorite Messaging
-                      </h2>
-                    </div>
-                    <p className="text-lg">Instant messaging application</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        REACT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        TYPESCRIPT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        POSTGRESQL
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "https://github.com/tylerhaisman/Meteorite",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image
-                        src={GitHub}
-                        alt="GitHub"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">GITHUB</p>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between gap-8">
-                  <div className="previewImage">
-                    <div className="flex gap-4 flex-col">
-                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
-                        <Image
-                          src={GlowbitScreenshot}
-                          alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-lg"
-                        ></Image>
-                      </div>
-                      <h2 className="text-3xl font-bold">Glowbit</h2>
-                    </div>
-                    <p className="text-lg">A memoized logic game</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        REACT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        JAVASCRIPT
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "https://tylerhaisman.github.io/Glowbit/",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image src={Live} alt="Live" className="w-4 h-4"></Image>
-                      <p className="text-lg">LIVE DEMO</p>
-                    </button>
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "https://github.com/tylerhaisman/Glowbit",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image
-                        src={GitHub}
-                        alt="GitHub"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">GITHUB</p>
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between gap-8">
-                  <div className="previewImage">
-                    <div className="flex gap-4 flex-col">
-                      <div className="border border-black px-12 pt-8 rounded-md overflow-hidden xl:h-56">
-                        <Image
-                          src={NestQuestScreenshot}
-                          alt="Lungs"
-                          className="mx-auto rounded-t-md duration-200 shadow-lg"
-                        ></Image>
-                      </div>
-                      <h2 className="text-3xl font-bold">NestQuest</h2>
-                    </div>
-                    <p className="text-lg">Enhanced housing search engine</p>
-                    <div className="flex gap-2 mt-4 flex-wrap text-sm font-mono text-white">
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        HTML
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        CSS
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        JAVASCRIPT
-                      </div>
-                      <div className="px-2 py-1 bg-black rounded-md border border-white/10 backdrop-blur-3xl">
-                        JQUERY
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "https://tylerhaisman.github.io/NestQuest/",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image src={Live} alt="Live" className="w-4 h-4"></Image>
-                      <p className="text-lg">LIVE DEMO</p>
-                    </button>
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex gap-2 justify-center items-center"
-                      onClick={() =>
-                        window.open(
-                          "https://github.com/tylerhaisman/NestQuest",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image
-                        src={GitHub}
-                        alt="GitHub"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">GITHUB</p>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-      <div
-        className="bg-gray-100 md:px-12 px-8 py-48 border-t border-black text-black"
-        id="about"
-      >
-        <div className="max-w-7xl m-auto relative">
-          <motion.h1 className="maxHero font-mono uppercase font-semibold">
-            ABOUT ME
-            <motion.span
-              initial={{ opacity: 1 }}
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{
-                duration: 0.8,
-                repeat: Infinity,
-              }}
-              className=""
-            >
-              _
-            </motion.span>
+            )}
+            {typedAboutText != "ABOUT ME" && (
+              <motion.span initial={{ opacity: 1 }} className="">
+                _
+              </motion.span>
+            )}
           </motion.h1>
           <motion.div
             className=""
@@ -662,19 +847,57 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <div className="absolute right-0 -top-72 border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden rotate-6">
-              <Image src={About8} alt="Image of Tyler"></Image>
-            </div>
+            {(showAbout || showConnect) && (
+              <motion.div
+                className="absolute right-0 -top-72 border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0, rotate: 6 }}
+                whileHover={{
+                  rotate: 3,
+                }}
+              >
+                <Image src={About8} alt="Image of Tyler"></Image>
+              </motion.div>
+            )}
             <div className="flex justify-center items-center mt-12">
-              <div className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden -rotate-6">
-                <Image src={About4} alt="Image of Tyler"></Image>
-              </div>
-              <div className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden rotate-6">
-                <Image src={About7} alt="Image of Tyler"></Image>
-              </div>
-              <div className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden -rotate-3">
-                <Image src={About9} alt="Image of Tyler"></Image>
-              </div>
+              {(showAbout || showConnect) && (
+                <motion.div
+                  className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden"
+                  initial={{ opacity: 0, y: 100, rotate: -20 }}
+                  animate={{ opacity: 1, y: 0, rotate: -6 }}
+                  whileHover={{
+                    rotate: -3,
+                  }}
+                >
+                  <Image src={About4} alt="Image of Tyler"></Image>
+                </motion.div>
+              )}
+              {(showAbout || showConnect) && (
+                <motion.div
+                  className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden"
+                  initial={{ opacity: 0, y: 100, rotate: 40 }}
+                  animate={{ opacity: 1, y: 0, rotate: 6 }}
+                  whileHover={{
+                    rotate: 3,
+                    zIndex: 0,
+                  }}
+                >
+                  <Image src={About7} alt="Image of Tyler"></Image>
+                </motion.div>
+              )}
+              {(showAbout || showConnect) && (
+                <motion.div
+                  className="border border-black w-[20vw] min-w-60 max-w-sm rounded-md overflow-hidden"
+                  initial={{ opacity: 0, y: 100, rotate: -30 }}
+                  animate={{ opacity: 1, y: 0, rotate: -3 }}
+                  whileHover={{
+                    rotate: -6,
+                    zIndex: 2,
+                  }}
+                >
+                  <Image src={About9} alt="Image of Tyler"></Image>
+                </motion.div>
+              )}
             </div>
             <div className="mt-48 flex flex-col gap-24">
               <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
@@ -684,7 +907,13 @@ export default function Home() {
                     <span className="font-bold">University of Florida.</span>
                   </h2>
                 </div>
-                <div className="border border-black rounded-md rotate-3 flex-1 relative">
+                <motion.div
+                  className="border border-black rounded-md flex-1 relative"
+                  initial={{ rotate: 3 }}
+                  whileHover={{
+                    rotate: 6,
+                  }}
+                >
                   <Image
                     src={About1}
                     alt="Image of Tyler"
@@ -704,7 +933,7 @@ export default function Home() {
                       _
                     </motion.span>
                   </p>
-                </div>
+                </motion.div>
               </div>
               <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
                 <div className="flex-1 text-center">
@@ -713,17 +942,29 @@ export default function Home() {
                     <span className="font-bold">Southwest Airlines.</span>
                   </h2>
                 </div>
-                <div className="border border-black rounded-md overflow-hidden -rotate-3 flex-1">
+                <motion.div
+                  className="border border-black rounded-md overflow-hidden flex-1"
+                  initial={{ rotate: -3 }}
+                  whileHover={{
+                    rotate: 0,
+                  }}
+                >
                   <Image src={About3} alt="Image of Tyler"></Image>
-                </div>
+                </motion.div>
               </div>
               <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
                 <div className="flex-1 text-center">
                   <h2 className="text-3xl">I love to travel.</h2>
                 </div>
-                <div className="border border-black rounded-md overflow-hidden rotate-6 flex-1">
+                <motion.div
+                  className="border border-black rounded-md overflow-hidden flex-1"
+                  initial={{ rotate: 6 }}
+                  whileHover={{
+                    rotate: 3,
+                  }}
+                >
                   <Image src={About2} alt="Image of Tyler"></Image>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
@@ -734,116 +975,129 @@ export default function Home() {
         id="contact"
       >
         <div className="max-w-7xl m-auto relative">
-          <motion.h1 className="maxHero font-mono uppercase font-semibold">
-            {"LET'S CONNECT"}
-            <motion.span
-              initial={{ opacity: 1 }}
-              animate={{ opacity: [1, 0, 1] }}
-              transition={{
-                duration: 0.8,
-                repeat: Infinity,
-              }}
-              className=""
-            >
-              _
-            </motion.span>
-          </motion.h1>
-          <motion.div
-            className=""
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+          <motion.h1
+            className="maxHero font-mono uppercase font-semibold"
+            ref={connectRef}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
           >
-            <div className="border border-black rounded-md mt-48 p-12 shadow-xl rotate-2">
-              <div className="flex justify-center items-center gap-24 md:flex-row flex-col">
-                <div className="border border-black rounded-full overflow-hidden">
-                  <Image
-                    src={Professional}
-                    alt="Professional image of Tyler"
-                  ></Image>
-                </div>
-                <div className="text-center flex flex-col justify-center items-center gap-6">
-                  <div className="">
-                    <h2 className="text-3xl font-bold">Tyler Haisman</h2>
-                    <p className="text-lg">
-                      Computer Science student at University of Florida
-                    </p>
+            {typedConnectText}
+            {typedConnectText == "LET'S CONNECT" && (
+              <motion.span
+                initial={{ opacity: 1 }}
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{
+                  duration: 0.8,
+                  repeat: Infinity,
+                }}
+                className=""
+              >
+                _
+              </motion.span>
+            )}
+            {typedConnectText != "LET'S CONNECT" && (
+              <motion.span initial={{ opacity: 1 }} className="">
+                _
+              </motion.span>
+            )}
+          </motion.h1>
+          {showConnect && (
+            <motion.div
+              className=""
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <div className="border border-black rounded-md mt-48 p-12 shadow-xl rotate-2">
+                <div className="flex justify-center items-center gap-24 md:flex-row flex-col">
+                  <div className="border border-black rounded-full overflow-hidden">
+                    <Image
+                      src={Professional}
+                      alt="Professional image of Tyler"
+                    ></Image>
                   </div>
-                  <hr className="w-12 border-t border-black" />
-                  <div className="flex flex-col justify-center items-center gap-2">
-                    <motion.div
-                      className="flex gap-4 mt-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                    >
+                  <div className="text-center flex flex-col justify-center items-center gap-6">
+                    <div className="">
+                      <h2 className="text-3xl font-bold">Tyler Haisman</h2>
+                      <p className="text-lg">
+                        Computer Science student at University of Florida
+                      </p>
+                    </div>
+                    <hr className="w-12 border-t border-black" />
+                    <div className="flex flex-col justify-center items-center gap-2">
+                      <motion.div
+                        className="flex gap-4 mt-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                      >
+                        <button
+                          className="border-white rounded-full w-fit duration-200"
+                          onClick={() =>
+                            window.open(
+                              "https://www.linkedin.com/in/tylerhaisman/",
+                              "_blank"
+                            )
+                          }
+                        >
+                          <Image
+                            src={LinkedIn}
+                            alt="LinkedIn"
+                            className="w-4 h-4"
+                          ></Image>
+                        </button>
+                        <button
+                          className="border-white rounded-full w-fit duration-200"
+                          onClick={() =>
+                            window.open(
+                              "https://github.com/tylerhaisman",
+                              "_blank"
+                            )
+                          }
+                        >
+                          <Image
+                            src={GitHub}
+                            alt="GitHub"
+                            className="w-4 h-4"
+                          ></Image>
+                        </button>
+                        <button
+                          className="border-white rounded-full w-fit duration-200"
+                          onClick={() =>
+                            window.open(
+                              "https://www.instagram.com/tylercompsci/",
+                              "_blank"
+                            )
+                          }
+                        >
+                          <Image
+                            src={Instagram}
+                            alt="Instagram"
+                            className="w-4 h-4"
+                          ></Image>
+                        </button>
+                      </motion.div>
                       <button
-                        className="border-white rounded-full w-fit duration-200"
+                        className="border border-black rounded-full px-4 py-2 duration-200 flex items-center justify-center gap-2 mt-2"
                         onClick={() =>
                           window.open(
-                            "https://www.linkedin.com/in/tylerhaisman/",
+                            "documents/TylerHaismanResume_2.pdf",
                             "_blank"
                           )
                         }
                       >
                         <Image
-                          src={LinkedIn}
-                          alt="LinkedIn"
+                          src={Documentation}
+                          alt="Documentation"
                           className="w-4 h-4"
                         ></Image>
+                        <p className="text-lg">VIEW RESUME</p>
                       </button>
-                      <button
-                        className="border-white rounded-full w-fit duration-200"
-                        onClick={() =>
-                          window.open(
-                            "https://github.com/tylerhaisman",
-                            "_blank"
-                          )
-                        }
-                      >
-                        <Image
-                          src={GitHub}
-                          alt="GitHub"
-                          className="w-4 h-4"
-                        ></Image>
-                      </button>
-                      <button
-                        className="border-white rounded-full w-fit duration-200"
-                        onClick={() =>
-                          window.open(
-                            "https://www.instagram.com/tylercompsci/",
-                            "_blank"
-                          )
-                        }
-                      >
-                        <Image
-                          src={Instagram}
-                          alt="Instagram"
-                          className="w-4 h-4"
-                        ></Image>
-                      </button>
-                    </motion.div>
-                    <button
-                      className="border border-black rounded-full px-4 py-2 duration-200 flex items-center justify-center gap-2 mt-2"
-                      onClick={() =>
-                        window.open(
-                          "documents/TylerHaismanResume_2.pdf",
-                          "_blank"
-                        )
-                      }
-                    >
-                      <Image
-                        src={Documentation}
-                        alt="Documentation"
-                        className="w-4 h-4"
-                      ></Image>
-                      <p className="text-lg">VIEW RESUME</p>
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
         </div>
         {renderFooter()}
       </div>

@@ -13,9 +13,9 @@
   font-family: "BaddMono";
 } */
 
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 .coverbg {
   background-image: url(../public/images/pexels-sincegameon-12775176.jpg);
