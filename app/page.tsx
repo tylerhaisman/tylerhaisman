@@ -91,7 +91,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (projectsRefInView && !showProjects) {
+    if (showProjects) {
+      setTypedProjectsText("PROJECTS");
+    } else if (projectsRefInView && !showProjects) {
       setShowProjects(true);
       let charIndex = 0;
       const typingInterval = setInterval(() => {
@@ -104,12 +106,10 @@ export default function Home() {
         }
       }, 100);
       return () => clearInterval(typingInterval);
-    } else if (projectsRefInView && showProjects) {
-      setTypedProjectsText("PROJECTS");
-    } else {
-      setTypedProjectsText("P");
     }
-    if (connectRefInView && !showConnect) {
+    if (connectRefInView && showConnect) {
+      setTypedConnectText("LET'S CONNECT");
+    } else if (connectRefInView && !showConnect) {
       setShowConnect(true);
       let charIndex = 0;
       const typingInterval = setInterval(() => {
@@ -122,12 +122,10 @@ export default function Home() {
         }
       }, 100);
       return () => clearInterval(typingInterval);
-    } else if (connectRefInView && showConnect) {
-      setTypedConnectText("LET'S CONNECT");
-    } else {
-      setTypedConnectText("L");
     }
-    if (aboutRefInView && !showAbout) {
+    if (aboutRefInView && showAbout) {
+      setTypedAboutText("ABOUT ME");
+    } else if (aboutRefInView && !showAbout) {
       setShowAbout(true);
       let charIndex = 0;
       const typingInterval = setInterval(() => {
@@ -138,10 +136,6 @@ export default function Home() {
         }
       }, 100);
       return () => clearInterval(typingInterval);
-    } else if (aboutRefInView && showAbout) {
-      setTypedAboutText("ABOUT ME");
-    } else {
-      setTypedAboutText("A");
     }
   }, [projectsRefInView, connectRefInView, aboutRefInView]);
 
