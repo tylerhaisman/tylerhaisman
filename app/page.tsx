@@ -99,7 +99,7 @@ export default function Home() {
       const typingInterval = setInterval(() => {
         charIndex++;
         setTypedProjectsText(
-          (prevText) => prevText + projectsText.charAt(charIndex)
+          (prevText) => prevText + projectsText.charAt(charIndex),
         );
         if (charIndex === projectsText.length) {
           clearInterval(typingInterval);
@@ -115,7 +115,7 @@ export default function Home() {
       const typingInterval = setInterval(() => {
         charIndex++;
         setTypedConnectText(
-          (prevText) => prevText + connectText.charAt(charIndex)
+          (prevText) => prevText + connectText.charAt(charIndex),
         );
         if (charIndex === connectText.length) {
           clearInterval(typingInterval);
@@ -145,7 +145,7 @@ export default function Home() {
       names.push(
         <p key={i} className="text-sm font-mono text-white whitespace-nowrap">
           TYLER HAISMAN |
-        </p>
+        </p>,
       );
     }
     return (
@@ -341,7 +341,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "documents/pneumonia_prediction_utility/pneumonia_prediction_utility.pdf",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -376,7 +376,7 @@ export default function Home() {
                               onClick={() =>
                                 window.open(
                                   "https://github.com/tylerhaisman/pneumonia_prediction_frontend",
-                                  "_blank"
+                                  "_blank",
                                 )
                               }
                             >
@@ -387,7 +387,7 @@ export default function Home() {
                               onClick={() =>
                                 window.open(
                                   "https://github.com/tylerhaisman/pneumonia_prediction_backend",
-                                  "_blank"
+                                  "_blank",
                                 )
                               }
                             >
@@ -485,7 +485,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "https://online-dicom-viewer.vercel.app/",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -497,7 +497,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "documents/online_dicom_viewer/online_dicom_viewer.pdf",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -513,7 +513,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/online_dicom_viewer",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -612,7 +612,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/Meteorite",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -653,7 +653,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "https://tylerhaisman.github.io/Glowbit/",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -665,7 +665,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/Glowbit",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -712,7 +712,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "https://tylerhaisman.github.io/NestQuest/",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -724,7 +724,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "https://github.com/tylerhaisman/NestQuest",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
@@ -827,7 +827,7 @@ export default function Home() {
               <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
                 <div className="flex-1 text-center relative">
                   <h2 className="text-3xl">
-                    I am a senior at the{" "}
+                    I graduated from the{" "}
                     <span className="font-bold">University of Florida.</span>
                   </h2>
                 </div>
@@ -862,7 +862,7 @@ export default function Home() {
               <div className="flex justify-between items-center gap-12 md:flex-row flex-col-reverse">
                 <div className="flex-1 text-center">
                   <h2 className="text-3xl">
-                    I am a Software Engineer Intern at{" "}
+                    I am an Associate Software Engineer at{" "}
                     <span className="font-bold">Southwest Airlines.</span>
                   </h2>
                 </div>
@@ -949,7 +949,7 @@ export default function Home() {
                         onClick={() =>
                           window.open(
                             "https://www.linkedin.com/in/tylerhaisman/",
-                            "_blank"
+                            "_blank",
                           )
                         }
                       >
@@ -964,7 +964,7 @@ export default function Home() {
                         onClick={() =>
                           window.open(
                             "https://github.com/tylerhaisman",
-                            "_blank"
+                            "_blank",
                           )
                         }
                       >
@@ -979,7 +979,7 @@ export default function Home() {
                         onClick={() =>
                           window.open(
                             "https://www.instagram.com/tylercompsci/",
-                            "_blank"
+                            "_blank",
                           )
                         }
                       >
@@ -995,7 +995,7 @@ export default function Home() {
                       onClick={() =>
                         window.open(
                           "documents/TylerHaismanResume3.pdf",
-                          "_blank"
+                          "_blank",
                         )
                       }
                     >
